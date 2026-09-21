@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3401",
+    "dev": "next dev -p 3300",
     "build": "next build",
-    "start": "next start -p 3401",
+    "start": "next start -p 3300",
     "lint": "eslint",
     "deploy:cf": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && opennextjs-cloudflare populateCache remote && node scripts/verify-cf.mjs https://deferless-site.kyisaiah47.workers.dev"
   },
