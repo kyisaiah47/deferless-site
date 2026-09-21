@@ -5,3 +5,14 @@ node_modules
 *.tsbuildinfo
 next-env.d.ts
 .env.local
+
+# Written and re-added by `next dev` itself (node_modules/next/dist/server/lib/
+# generate-agent-files.js), not by this tree. Ignored rather than committed so a dev run never
+# leaves the tree dirty: compound-ops' nightly sweep REFUSES a repo whose tree is dirty between
+# its triage and its build, so a file the framework rewrites on every run would silently cost
+# this product its deploy.
+AGENTS.md
+CLAUDE.md
+
+# Screenshots from `npm run shoot`, for looking at during a session. Not source.
+review

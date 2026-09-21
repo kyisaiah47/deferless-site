@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3300",
+    "dev": "next dev -p 3305",
     "build": "next build",
-    "start": "next start -p 3300",
+    "start": "next start -p 3305",
     "lint": "eslint",
+    "check": "node scripts/check-register.mjs",
+    "capture": "node scripts/capture.mjs",
+    "icons": "node scripts/icons.mjs",
+    "shoot": "node scripts/shoot.mjs",
+    "build:cf": "opennextjs-cloudflare build",
     "deploy:cf": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && opennextjs-cloudflare populateCache remote && node scripts/verify-cf.mjs https://deferless-site.kyisaiah47.workers.dev"
   },
   "dependencies": {
@@ -20,8 +25,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "deferless": "^0.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "puppeteer-core": "^25.3.0",
     "typescript": "^5",
     "wrangler": "^4.132.0"
   }

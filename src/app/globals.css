@@ -1,49 +1,767 @@
-:root {
-  --ink: #0a0a0a;
-  --paper: #ffffff;
-  --line: #e5e5e5;
-  --muted: #666;
-  --accent: #0a5c36;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+/* DEFERLESS, THE GATE SHEET. This app's whole register, written here and imported from nowhere
+ * else in the estate. There is no shared shell, no kit and no component library: those four
+ * repos were backed up and purged on 2026-09-14 and every app is its own Next.js tree.
+ *
+ * THE ACCENT IS #33C9C4, OKLCH L 0.760 C 0.120 h 191.6, and the derivation is arithmetic rather
+ * than taste. Every chromatic product accent on the estate was read on 2026-09-21 from the
+ * palette registry ~/.codex/skills/3d-image-gen/product-palette.json, with StoreReady corrected
+ * to its repo's own citron #d2ca02 because the registry is stale for it, and ShelfCite and
+ * EntryLine added from their own globals.css because they post-date the registry. That is 48
+ * chromatic accents. The widest empty arc left on the ring runs 27.4 degrees between
+ * StillShipping h 177.9 and BlockDex h 205.3, and h 191.6 is its midpoint. The next widest slot
+ * offers 21.6. The accent measures 9.70:1 on the #0a0a0a ground and 9.18:1 on the #101314 panel.
+ * Hover is the same hue at L 0.820, #5FDBD6.
+ *
+ * ⛔ IT IS 13.7 DEGREES FROM BOTH NEIGHBOURS, which is the whole reason the midpoint is the
+ * answer and not a hue somebody liked. Anything nearer than 12 degrees to a live product reads
+ * as that product at thumbnail size, and scripts/check-register.mjs re-derives the ring and
+ * fails rather than trusting this paragraph.
+ *
+ * THE ACCENT PAINTS WHAT THE READER IS DOING, NEVER A VERDICT. The install line, the current
+ * nav item, the focus ring, an anchor. A gate's result never takes it, because this product's
+ * whole subject is the difference between pass, fail and could not run, and an accent that also
+ * appears on a verdict makes a fourth ambiguous state.
+ *
+ * THE FOUR STATUS INKS ARE THE EXIT CODES, and they are the same four everywhere on the page:
+ *   pass    #8ed44a   0   clean
+ *   fail    #ef6b70   1   the output violates something that was agreed
+ *   caution #d8c76b   2   the gate could not run, and it never collapses into 0
+ *   dim     #8a8a8a   3   every violation was that the thing was never produced
+ *
+ * `caution` and `dim` are the two that must never read as a pass or as a failure. 2 is the code
+ * the README says matters most, so it gets its own ink rather than borrowing the failure one.
+ *
+ * TWO FACES, AND THE SPLIT IS THE SUBJECT. BDO Grotesk sets anything a person wrote. IBM Plex
+ * Mono sets anything a machine wrote or a person types at a machine: a command, a path, a flag,
+ * an exit code, a captured block, a check kind. Nothing is set in mono for texture.
+ */
+
+@font-face {
+  font-family: 'BDO Grotesk';
+  src: url('/fonts/bdo-grotesk.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.55; }
+:root {
+  --ground: #0a0a0a;
+  --panel: #101314;
+  --panel-2: #151a1b;
+  --ink: #e6e8e8;
+  --ink-2: #a2a8a8;
+  --ink-3: #7d8484;
+  --line: #1f2526;
+  --line-2: #2a3132;
 
-.masthead { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--paper); z-index: 10; }
-.masthead-row { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; gap: 10px; }
-.masthead__mark { display: block; }
-.app-lock { flex: 1; }
-.masthead__name { font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
-.masthead__nav { display: flex; gap: 18px; }
-.masthead__nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
-.masthead__nav a:hover { color: var(--ink); }
+  --accent: #33c9c4;
+  --accent-hover: #5fdbd6;
+  --accent-line: rgb(51 201 196 / 0.34);
+  --accent-wash: rgb(51 201 196 / 0.08);
 
-main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  --pass: #8ed44a;
+  --fail: #ef6b70;
+  --caution: #d8c76b;
+  --dim: #8a8a8a;
 
-.hero h1 { font-size: 36px; margin: 0 0 12px; }
-.hero p.lede { font-size: 18px; color: var(--muted); margin: 0 0 24px; max-width: 640px; }
-.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.badges img { display: block; height: 20px; }
-.cta { display: flex; gap: 12px; margin-bottom: 40px; }
-.cta a { padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600; }
-.cta a.primary { background: var(--ink); color: var(--paper); }
-.cta a.secondary { border: 1px solid var(--line); color: var(--ink); }
+  --sans: 'BDO Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: var(--font-mono), ui-monospace, 'SF Mono', Menlo, monospace;
 
-section { margin: 48px 0; }
-section h2 { font-size: 22px; margin: 0 0 16px; }
-section p { color: #333; }
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --in: 140ms var(--ease);
+  --out: 240ms var(--ease);
 
-pre { background: #0a0a0a; color: #e5e5e5; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.6; }
-code { font-family: var(--mono); }
+  /* THE SHELL. Every full bleed strip pads to this and the frame caps at it, so above 1120 the
+   * page is one block that centres and nothing stretches. 1120 is this product's own sum,
+   * 748 of reading column plus 40 of gutter plus 332 of margin note, not a breakpoint number. */
+  --shell: 1120px;
+  --read: 748px;
+  --note: 332px;
+  --gap: 40px;
+  --pad: 24px;
+}
 
-.principles { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.principles li { padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.site-foot { border-top: 1px solid var(--line); margin-top: 60px; }
-.site-foot { max-width: 860px; margin-left: auto; margin-right: auto; padding: 32px 24px; color: var(--muted); font-size: 13px; }
-.site-foot p { margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
-.studio-credit-mark { display: inline-block; }
-.copyright { color: #999; }
+html {
+  background: var(--ground);
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-line);
+  transition: color var(--in), border-color var(--in);
+}
+a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--mono);
+  font-variant-ligatures: none;
+}
+
+/* ── the strip, this page's one layout primitive ───────────────────────────────────────────
+ * A full bleed band with a hairline under it, holding one block capped at --shell. Every
+ * section of the page is one, so the page is a stack of rules and the reader learns the rhythm
+ * once. Nothing on the page is a card. */
+.strip {
+  border-bottom: 1px solid var(--line);
+}
+.strip > .in {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* ── masthead ──────────────────────────────────────────────────────────────────────────── */
+.mast {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgb(10 10 10 / 0.86);
+  backdrop-filter: blur(10px);
+}
+.mast > .in {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 56px;
+}
+.mast-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  border-bottom: 0;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.mast-id:hover {
+  color: var(--ink);
+}
+.mast-id .mk {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+.mast-standing {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mast-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+/* The vertical padding is the tap box and nothing else: a 13.5px line is a 22px target, and
+ * WCAG 2.5.8 wants 24 in both directions or 24px of clearance. 4px above and below takes it to
+ * 30 without moving a single glyph, because the bar centres its children. */
+.mast-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+  border-bottom: 0;
+  font-size: 13.5px;
+  padding: 4px 0;
+}
+.mast-nav a:hover {
+  color: var(--ink);
+}
+.mast-nav a[aria-current='page'] {
+  color: var(--accent);
+}
+.mast-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  border-radius: 3px;
+  padding: 6px 11px;
+  background: var(--accent-wash);
+  white-space: nowrap;
+}
+.mast-cta:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ⛔ EVERY ANCHOR TARGET CLEARS THE STICKY MASTHEAD. Without this a jump to #output lands with
+ * the section heading painted underneath the 56px bar, which reads as a broken link rather than
+ * as a scroll offset. 72px is the bar plus a line of air. */
+section[id],
+.gate[id] {
+  scroll-margin-top: 72px;
+}
+
+.ico {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  display: block;
+}
+
+/* ── the head band ─────────────────────────────────────────────────────────────────────── */
+.head > .in {
+  padding-top: 76px;
+  padding-bottom: 56px;
+  max-width: var(--shell);
+}
+h1 {
+  margin: 0 0 18px;
+  font-size: 38px;
+  line-height: 1.16;
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  max-width: 17ch;
+}
+.lede {
+  margin: 0 0 30px;
+  max-width: 62ch;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 0 0 24px;
+}
+/* The anchor carries the tap box, never the shield: a shield is 20px tall by its own design and
+ * stretching it would misdraw somebody else's label. 4px above and below takes the target to
+ * 28px, and the 12px gap keeps the boxes apart. */
+.badges a {
+  border-bottom: 0;
+  display: inline-flex;
+  padding: 4px 0;
+}
+/* A shield is a picture of a label. It is drawn at its own intrinsic size and never stretched,
+ * which is also what keeps it out of HARD RULE 8: nothing here approaches the column. */
+.badges img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+.run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+}
+.run-cmd {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: 3px;
+  padding: 9px 14px;
+}
+.run-cmd:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.run-alt {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  border-bottom-color: var(--line-2);
+  padding: 3px 0;
+}
+.run-alt:hover {
+  color: var(--ink);
+}
+
+/* ── a section: the reading column, with a margin note beside it ──────────────────────────
+ * ⛔ THE NOTE COLUMN CARRIES PROSE, NEVER A PICTURE AND NEVER A DECORATION. It is the second
+ * exit of HARD RULE 8 used as it was meant to be: two real columns of words, either side. */
+.sec > .in {
+  padding-top: 52px;
+  padding-bottom: 52px;
+  display: grid;
+  grid-template-columns: minmax(0, var(--read)) minmax(0, var(--note));
+  gap: var(--gap);
+  align-items: start;
+}
+/* ⛔ A ONE COLUMN SECTION IS A BLOCK, NOT A ONE COLUMN GRID. The first cut kept `display: grid`
+ * and set a single track, so the grid's own 40px `gap` became a ROW gap between the heading and
+ * the first thing under it. Measured at 1440: 115px between "Where every claim on this page came
+ * from" and its paragraph, against the 16px the h2 declares. It reads as a missing element. */
+.sec.wide > .in {
+  display: block;
+}
+h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 1.28;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.008em;
+}
+p {
+  margin: 0 0 14px;
+  max-width: 68ch;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+.sec .note {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  border-left: 1px solid var(--line);
+  padding-left: 18px;
+}
+.sec .note h4 {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.sec .note p {
+  margin-bottom: 10px;
+}
+
+/* ── the captured terminal block ──────────────────────────────────────────────────────────
+ * The one place on this site where the bytes are the program's and not ours. It scrolls inside
+ * itself rather than wrapping, because a gate's output is column aligned and a wrap destroys
+ * the alignment that makes it readable. */
+/* ⛔ A HORIZONTAL SCROLLER SAYS SO. compound-ops' mobile-shape gate found this block and both
+ * code fences scrolling 97px and 187px sideways at 390 with nothing on screen saying the track
+ * continued: a reader sees a clipped line and reads it as a truncated one. The shadow pair below
+ * is the background-attachment: local trick, so the right hand cue paints ONLY while there is
+ * more to the right and disappears at the end of the track. A plain mask would fade the edge
+ * even when the block fits, which would be a decoration that lies. */
+.term,
+pre.code {
+  background-image:
+    linear-gradient(to right, var(--panel), rgb(16 19 20 / 0)),
+    linear-gradient(to right, rgb(16 19 20 / 0), var(--panel)),
+    linear-gradient(to right, rgb(51 201 196 / 0.22), rgb(51 201 196 / 0)),
+    linear-gradient(to left, rgb(51 201 196 / 0.22), rgb(51 201 196 / 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 28px 100%, 28px 100%, 12px 100%, 12px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.term {
+  margin: 0;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  white-space: pre;
+  tab-size: 2;
+}
+.term .t-pass {
+  color: var(--pass);
+}
+.term .t-fail {
+  color: var(--fail);
+}
+.term .t-cmd {
+  color: var(--ink);
+}
+.term .t-quote {
+  color: var(--ink-3);
+}
+.term-cap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+pre.code {
+  margin: 0;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  white-space: pre;
+}
+
+/* ── the refusal list ─────────────────────────────────────────────────────────────────── */
+.refuse {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.refuse li {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.refuse b {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
+}
+/* THE STRIKE IS THE WHOLE POINT. These four are absences, so the name of each is drawn as a
+ * thing that is not there rather than as a heading.
+ *
+ * ⛔ IT IS text-decoration AND NOT A ::before BAR. The first cut drew a 1px block pulled up with
+ * a negative margin, which draws ONE bar under the LAST line of the name. Measured at 1440:
+ * "a known issues file" and "a warn instead of fail toggle" both wrap in the 220px column, so
+ * three of the four names rendered with a red rule under the second line instead of a line
+ * through the words. text-decoration follows every line box, which is what this needs. */
+.refuse b {
+  text-decoration: line-through;
+  text-decoration-color: var(--fail);
+  text-decoration-thickness: 1px;
+}
+.refuse span {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* ── the gate rows ────────────────────────────────────────────────────────────────────── */
+.gate {
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+}
+.gate:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.gate-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 4px;
+}
+.gate-head .ico {
+  font-size: 16px;
+  color: var(--accent);
+}
+.gate-cmd {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.gate-title {
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+.gate-body {
+  display: grid;
+  grid-template-columns: minmax(0, var(--read)) minmax(0, var(--note));
+  gap: var(--gap);
+  align-items: start;
+  margin-top: 14px;
+}
+.gate-body > pre.code {
+  grid-column: 1;
+}
+.gate-why {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  border-left: 1px solid var(--line);
+  padding-left: 18px;
+}
+
+/* ── the exit code table ──────────────────────────────────────────────────────────────── */
+.exits {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.exits th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  color: var(--ink-3);
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+.exits td {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+  color: var(--ink-2);
+}
+.exits td.x {
+  width: 72px;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.exits td.x[data-ink='pass'] {
+  color: var(--pass);
+}
+.exits td.x[data-ink='fail'] {
+  color: var(--fail);
+}
+.exits td.x[data-ink='caution'] {
+  color: var(--caution);
+}
+.exits td.x[data-ink='dim'] {
+  color: var(--dim);
+}
+
+/* ── the limits and the sources ───────────────────────────────────────────────────────── */
+.limits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.limits li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.limits h3 {
+  margin-bottom: 4px;
+}
+.limits p {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.src {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.src li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+}
+/* ⛔ NO AUTOMATIC QUOTE MARKS. `q` adds a pair of its own, and one of these quotes is a JSON
+ * fragment that opens with a double quote, so the row rendered a doubled mark that reads as a
+ * typo in the source rather than as part of the quoted bytes. The quotation is shown with a
+ * rule instead, which cannot collide with the quoted text whatever it starts with. */
+.src q {
+  display: block;
+  quotes: none;
+  color: var(--ink-3);
+  margin: 6px 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--line-2);
+  font-style: normal;
+}
+.src q::before,
+.src q::after {
+  content: none;
+}
+.src .cite {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ── footer, and the Compound Labs credit ─────────────────────────────────────────────────
+ * THE CREDIT IS FOUR LAYERS AND THIS FILE OWNS ONE OF THEM. The mark is a picture in a fixed
+ * 80x20 box with object-fit: contain, both dimensions declared, because an image with only a
+ * height reserves nothing until it loads and reflows the bar. The words "Built by" stay live
+ * text beside it and the studio's name is never typed there, because it is inside the picture
+ * and the alt is its machine readable copy. */
+.foot > .in {
+  padding: 36px var(--pad) 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 40px;
+  align-items: flex-start;
+}
+.foot h4 {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+.foot ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13.5px;
+  line-height: 1.9;
+}
+.foot ul a {
+  color: var(--ink-2);
+  border-bottom: 0;
+}
+.foot ul a:hover {
+  color: var(--accent);
+}
+.foot-col {
+  min-width: 160px;
+}
+
+.credit {
+  border-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.credit:hover {
+  color: var(--ink-2);
+}
+.studio-credit-mark {
+  width: 80px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+/* ⛔ THE RETIRED SWIRL DOES NOT STOP PAINTING BY ITSELF. Most of the estate's globals.css
+ * paints /brand/compound-studios.svg on ANY footer anchor pointing at thecompound.tech, keyed on
+ * the href rather than on a class, so a correct credit anchor still matches it. This tree has
+ * no such rule of its own, and the kill is declared anyway at the (0,2,4) specificity the house
+ * rule needs, so that a later sheet cannot reintroduce it. `content: none`, not just
+ * background-image, because an empty content still generates a box that reads as a failed asset. */
+html body footer a.credit[href]::before,
+html body a.credit[href]::before {
+  content: none !important;
+  background-image: none !important;
+}
+
+.foot-line > .in {
+  padding-top: 14px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.foot-line a {
+  color: var(--ink-3);
+  border-bottom-color: var(--line-2);
+}
+.foot-line a:hover {
+  color: var(--accent);
+}
+
+/* ── phone ─────────────────────────────────────────────────────────────────────────────
+ * The margin note is a second column on a desktop and a block under the prose on a phone. It
+ * never becomes a squeezed rail, because a 13.5px note in a 120px column is unreadable. */
+@media (max-width: 900px) {
+  .sec > .in,
+  .gate-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sec .note,
+  .gate-why {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 14px;
+  }
+  .mast-standing {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 29px;
+    max-width: none;
+  }
+  h2 {
+    font-size: 19px;
+  }
+  .head > .in {
+    padding-top: 44px;
+    padding-bottom: 36px;
+  }
+  .refuse li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  /* ⛔ THE THREE SECTION LINKS GO, THEY DO NOT SHRINK. The first cut hid their labels and left
+   * three 14x14 icons 18px apart, which mobile-shape flagged under WCAG 2.5.8 and which is
+   * unreadable besides. They are a table of contents for one page, and the footer already
+   * carries that list at full size, so on a phone the masthead keeps only the two links that
+   * leave the site. */
+  .mast-nav {
+    gap: 14px;
+  }
+  .mast-nav a[href^='#'] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

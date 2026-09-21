@@ -1,25 +1,73 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import LenisProvider from "@/components/LenisProvider";
-import Masthead from "@/components/Masthead";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import { IBM_Plex_Mono } from 'next/font/google';
+import './globals.css';
+import SmoothScroll from '@/components/SmoothScroll';
+import { Masthead, Footer } from '@/components/Shell';
+import { PRODUCT } from '@/lib/product';
+
+/* A mono for everything a machine wrote. The sentence face is BDO Grotesk, declared as a
+ * @font-face in globals.css off public/fonts, so the page's own words never wait on a CDN. */
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-mono',
+});
+
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || `https://${PRODUCT.host}`;
 
 export const metadata: Metadata = {
-  title: "deferless",
-  description:
-    "Fail-closed gates for work an AI agent did on your behalf: a plan it can’t quietly deviate from, and findings it can’t defer. No --force, no allowlist, no known-issues file.",
-  metadataBase: new URL("https://deferless.thecompound.tech"),
+  metadataBase: new URL(SITE),
+  title: { default: `${PRODUCT.name}: ${PRODUCT.headline}`, template: `%s · ${PRODUCT.name}` },
+  description: PRODUCT.blurb,
+  alternates: { canonical: SITE },
+  openGraph: {
+    title: `${PRODUCT.name}: ${PRODUCT.headline}`,
+    description: PRODUCT.blurb,
+    url: SITE,
+    siteName: PRODUCT.name,
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: PRODUCT.name, description: PRODUCT.blurb },
+  icons: { icon: '/favicon.svg' },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={mono.variable}>
       <body>
-        <LenisProvider>
-          <Masthead />
-          <main>{children}</main>
-          <Footer />
-        </LenisProvider>
+        {/* LAYER 1 OF THE COMPOUND LABS CREDIT. The publisher is the apex Organization node,
+            referenced by @id. Never a local Organization declaration: a second node under the
+            same name is a second entity as far as a crawler is concerned, and the @id edge is
+            what joins this package to everything else the studio publishes. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareSourceCode',
+              name: PRODUCT.name,
+              url: SITE,
+              description: PRODUCT.blurb,
+              codeRepository: PRODUCT.repo,
+              programmingLanguage: 'JavaScript',
+              runtimePlatform: 'Node.js',
+              license: 'https://spdx.org/licenses/MIT.html',
+              version: PRODUCT.version,
+              publisher: {
+                '@type': 'Organization',
+                '@id': 'https://thecompound.tech/#organization',
+                name: 'Compound Labs',
+                url: 'https://thecompound.tech',
+              },
+            }).replace(/</g, '\\u003c'),
+          }}
+        />
+        <SmoothScroll />
+        <Masthead />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
