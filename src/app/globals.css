@@ -1,0 +1,49 @@
+:root {
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --line: #e5e5e5;
+  --muted: #666;
+  --accent: #0a5c36;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.55; }
+
+.masthead { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--paper); z-index: 10; }
+.masthead-row { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; gap: 10px; }
+.masthead__mark { display: block; }
+.app-lock { flex: 1; }
+.masthead__name { font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
+.masthead__nav { display: flex; gap: 18px; }
+.masthead__nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.masthead__nav a:hover { color: var(--ink); }
+
+main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+.hero h1 { font-size: 36px; margin: 0 0 12px; }
+.hero p.lede { font-size: 18px; color: var(--muted); margin: 0 0 24px; max-width: 640px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.badges img { display: block; height: 20px; }
+.cta { display: flex; gap: 12px; margin-bottom: 40px; }
+.cta a { padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600; }
+.cta a.primary { background: var(--ink); color: var(--paper); }
+.cta a.secondary { border: 1px solid var(--line); color: var(--ink); }
+
+section { margin: 48px 0; }
+section h2 { font-size: 22px; margin: 0 0 16px; }
+section p { color: #333; }
+
+pre { background: #0a0a0a; color: #e5e5e5; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.6; }
+code { font-family: var(--mono); }
+
+.principles { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.principles li { padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+
+.site-foot { border-top: 1px solid var(--line); margin-top: 60px; }
+.site-foot { max-width: 860px; margin-left: auto; margin-right: auto; padding: 32px 24px; color: var(--muted); font-size: 13px; }
+.site-foot p { margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+.studio-credit-mark { display: inline-block; }
+.copyright { color: #999; }
