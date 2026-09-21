@@ -51,6 +51,9 @@ node scripts/verify-cf.mjs "$WORKER"
 echo "==> the layout gate, against the worker"
 node scripts/layout-gate.mjs "$WORKER"
 
+echo "==> the studio credit gate, against the worker"
+node "$HOME/CompoundLabs/compound-ops/tools/gates/studio-credit-gate.mjs" "$WORKER"
+
 # Once the subdomain points at the Worker, prove the real host too. Until then this is skipped,
 # so the script does not fail on a domain nothing has been pointed at yet.
 if [ -n "$HOST" ]; then

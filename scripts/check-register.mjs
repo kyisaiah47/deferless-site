@@ -149,7 +149,7 @@ const src = (f) => read(path.join(ROOT, f));
   const css = src('src/app/globals.css');
   const wide = [...css.matchAll(/(img|\.mk|\.studio-credit-mark|\.badges img)[^{]*\{[^}]*width:\s*100%/g)];
   wide.length ? fail('no full column picture', 'a mark is set to the full column width')
-    : ok('no full column picture', 'every picture is a mark, capped at 24px in the masthead, 80px in the credit and 20px tall in a badge');
+    : ok('no full column picture', 'every picture is a mark, capped at 24px in the masthead, 20px in the credit and 20px tall in a badge');
 }
 
 /* no accent bar. ⛔ A border of 2px or more on ONE edge in a visible colour is the accent bar,
