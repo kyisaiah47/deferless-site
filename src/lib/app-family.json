@@ -1,0 +1,114 @@
+{
+  "family": "dev",
+  "label": "Dev tools",
+  "apps": [
+    {
+      "slug": "blockdex",
+      "name": "BlockDex",
+      "url": "https://blockdex.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%221.5%22%20y%3D%221%22%20width%3D%2213%22%20height%3D%2211.5%22%20rx%3D%222%22%20fill%3D%22%2300ddef%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%2217.5%22%20y%3D%221%22%20width%3D%2213%22%20height%3D%2211.5%22%20rx%3D%222%22%20fill%3D%22%2300ddef%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%221.5%22%20y%3D%2215.5%22%20width%3D%2213%22%20height%3D%2211.5%22%20rx%3D%222%22%20fill%3D%22%2300ddef%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%2217.5%22%20y%3D%2215.5%22%20width%3D%2213%22%20height%3D%2211.5%22%20rx%3D%222%22%20fill%3D%22%2300ddef%22%20fill-opacity%3D%221%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "breachprobe",
+      "name": "BreachProbe",
+      "url": "https://breachprobe.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M16%201%20L27%204.8%20V12.1%20H5%20V4.8%20Z%22%20fill%3D%22%2395c2ff%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%2014.7%20H27%20C27%2020.9%2022.2%2025.3%2016%2027%20C9.8%2025.3%205%2020.9%205%2014.7%20Z%22%20fill%3D%22%2395c2ff%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "citerank",
+      "name": "CiteRank",
+      "url": "https://citerank.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M%206%202%20H%2014.5%20V%2010%20L%2010.5%2016%20H%206%20Z%22%20fill%3D%22%23fa9cff%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M%2017.5%202%20H%2026%20V%2010%20L%2022%2016%20H%2017.5%20Z%22%20fill%3D%22%23fa9cff%22%3E%3C%2Fpath%3E%3Crect%20x%3D%226%22%20y%3D%2219.5%22%20width%3D%2220%22%20height%3D%223.2%22%20rx%3D%220.8%22%20fill%3D%22%23fa9cff%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%226%22%20y%3D%2224%22%20width%3D%2212%22%20height%3D%223.2%22%20rx%3D%220.8%22%20fill%3D%22%23fa9cff%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "deferless-site",
+      "name": "deferless",
+      "url": "https://deferless.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%20role%3D%22img%22%20aria-label%3D%22deferless%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101314%22%2F%3E%3Cpath%20d%3D%22M16%206v11%22%20stroke%3D%22%2333C9C4%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22square%22%2F%3E%3Cpath%20d%3D%22M11.5%2013.5%2016%2018l4.5-4.5%22%20fill%3D%22none%22%20stroke%3D%22%2333C9C4%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Crect%20x%3D%226%22%20y%3D%2221.6%22%20width%3D%2220%22%20height%3D%222.8%22%20rx%3D%220.4%22%20fill%3D%22%2333C9C4%22%2F%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "kitgrade",
+      "name": "KitGrade",
+      "url": "https://kitgrade.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%202.5)%20scale(0.84375)%22%3E%3Crect%20x%3D%229%22%20y%3D%227%22%20width%3D%2214%22%20height%3D%2213%22%20fill%3D%22%23ff335f%22%3E%3C%2Frect%3E%3Crect%20x%3D%222%22%20y%3D%2220%22%20width%3D%2228%22%20height%3D%226%22%20fill%3D%22%23ff335f%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M5%2026%20H11%20V31%20H5%20Z%20M21%2026%20H27%20V31%20H21%20Z%22%20fill%3D%22%23ff335f%22%20fill-opacity%3D%220.34%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "listrun",
+      "name": "ListRun",
+      "url": "https://listrun.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%202.5)%20scale(0.84375)%22%3E%3Crect%20x%3D%225%22%20y%3D%223%22%20width%3D%2222%22%20height%3D%229%22%20fill%3D%22%23ff8133%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%221%22%20y%3D%2214%22%20width%3D%2230%22%20height%3D%225%22%20fill%3D%22%23ff8133%22%3E%3C%2Frect%3E%3Crect%20x%3D%225%22%20y%3D%2221%22%20width%3D%2222%22%20height%3D%228%22%20fill%3D%22%23ff8133%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "matchline",
+      "name": "MatchLine",
+      "url": "https://matchline.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%202.5)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M2%201h12v7H2z%20M2%2012h12v7H2z%20M2%2023h12v7H2z%22%20fill%3D%22%23b154ff%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M18%201h12v7H18z%20M18%2023h12v7H18z%22%20fill%3D%22%23b154ff%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "policydrift",
+      "name": "PolicyDrift",
+      "url": "https://policydrift.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%202.5)%20scale(0.84375)%22%3E%3Crect%20x%3D%224%22%20y%3D%222%22%20width%3D%2214%22%20height%3D%229%22%20fill%3D%22%23ff339c%22%20fill-opacity%3D%221%22%3E%3C%2Frect%3E%3Crect%20x%3D%222%22%20y%3D%2213%22%20width%3D%2228%22%20height%3D%226%22%20fill%3D%22%23ff339c%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%2214%22%20y%3D%2221%22%20width%3D%2214%22%20height%3D%229%22%20fill%3D%22%23ff339c%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "rulestack",
+      "name": "RuleStack",
+      "url": "https://rulestack.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M%2016%2014.5%20L%2031%2021%20L%2016%2027.5%20L%201%2021%20Z%22%20fill%3D%22%2380e310%22%20fill-opacity%3D%220.34%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M%2016%207.5%20L%2031%2014%20L%2016%2020.5%20L%201%2014%20Z%22%20fill%3D%22%2380e310%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M%2016%200.5%20L%2031%207%20L%2016%2013.5%20L%201%207%20Z%22%20fill%3D%22%2380e310%22%20fill-opacity%3D%221%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "scriptprobe",
+      "name": "ScriptProbe",
+      "url": "https://scriptprobe.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%226%22%20fill%3D%22%2300e98b%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%223%22%20y%3D%2212%22%20width%3D%2226%22%20height%3D%226%22%20fill%3D%22%2300e98b%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%229%22%20y%3D%2212%22%20width%3D%2211%22%20height%3D%226%22%20fill%3D%22%2300e98b%22%3E%3C%2Frect%3E%3Crect%20x%3D%223%22%20y%3D%2221%22%20width%3D%2217%22%20height%3D%226%22%20fill%3D%22%2300e98b%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "shipwall",
+      "name": "ShipWall",
+      "url": "https://shipwall.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2210%22%20height%3D%2224%22%20rx%3D%222%22%20fill%3D%22%23fe9bf6%22%20fill-opacity%3D%221%22%3E%3C%2Frect%3E%3Crect%20x%3D%2215%22%20y%3D%222%22%20width%3D%2215%22%20height%3D%2210.5%22%20rx%3D%222%22%20fill%3D%22%23fe9bf6%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%2215%22%20y%3D%2215.5%22%20width%3D%2215%22%20height%3D%2210.5%22%20rx%3D%222%22%20fill%3D%22%23fe9bf6%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "skillworks",
+      "name": "SkillWorks",
+      "url": "https://skillworks.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%222%22%20y%3D%221%22%20width%3D%2228%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%236fd2ff%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M6%2013.4%20L9%2010.4%20L13.3%2014.7%20L23%205%20L26%208%20L13.3%2020.7%20Z%22%20fill%3D%22%236fd2ff%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "stacktab",
+      "name": "StackTab",
+      "url": "https://stacktab.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2222%22%20height%3D%226%22%20fill%3D%22%23c1b5ff%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%222%22%20y%3D%2211%22%20width%3D%2216%22%20height%3D%226%22%20fill%3D%22%23c1b5ff%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%222%22%20y%3D%2220%22%20width%3D%2228%22%20height%3D%226%22%20fill%3D%22%23c1b5ff%22%20fill-opacity%3D%221%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "stillshipping",
+      "name": "StillShipping",
+      "url": "https://stillshipping.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%226.5%22%20height%3D%2220.0%22%20rx%3D%221%22%20fill%3D%22%2315e3c4%22%20fill-opacity%3D%220.34%22%3E%3C%2Frect%3E%3Crect%20x%3D%2210%22%20y%3D%2213%22%20width%3D%226.5%22%20height%3D%2212.0%22%20rx%3D%221%22%20fill%3D%22%2315e3c4%22%20fill-opacity%3D%220.62%22%3E%3C%2Frect%3E%3Crect%20x%3D%2218%22%20y%3D%2221.5%22%20width%3D%2212%22%20height%3D%223.5%22%20rx%3D%221%22%20fill%3D%22%2315e3c4%22%20fill-opacity%3D%221%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "storeready",
+      "name": "StoreReady",
+      "url": "https://storeready.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M1%201%20H31%20L19.5%2014%20H12.5%20Z%22%20fill%3D%22%23d2ca02%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpath%3E%3Crect%20x%3D%2212.5%22%20y%3D%2217%22%20width%3D%227%22%20height%3D%2210%22%20rx%3D%221.5%22%20fill%3D%22%23d2ca02%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "tooldrift",
+      "name": "ToolDrift",
+      "url": "https://tooldrift.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpath%20d%3D%22M%205%202%20L%2016%208%20L%2027%202%20L%2027%206.5%20L%2016%2012.5%20L%205%206.5%20Z%22%20fill%3D%22%23fdb500%22%20fill-opacity%3D%220.34%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M%205%209.5%20L%2016%2015.5%20L%2027%209.5%20L%2027%2014%20L%2016%2020%20L%205%2014%20Z%22%20fill%3D%22%23fdb500%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M%205%2017%20L%2016%2023%20L%2027%2017%20L%2027%2021.5%20L%2016%2027.5%20L%205%2021.5%20Z%22%20fill%3D%22%23fdb500%22%20fill-opacity%3D%221%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "toolproof",
+      "name": "Toolproof",
+      "url": "https://toolproof.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%204.188)%20scale(0.84375)%22%3E%3Cpolygon%20points%3D%222%2C3%2013%2C3%2013%2C7%206%2C7%206%2C14%202%2C14%22%20fill%3D%22%23ffab9e%22%20fill-opacity%3D%220.34%22%3E%3C%2Fpolygon%3E%3Cpolygon%20points%3D%2230%2C25%2019%2C25%2019%2C21%2026%2C21%2026%2C14%2030%2C14%22%20fill%3D%22%23ffab9e%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpolygon%3E%3Cpolygon%20points%3D%2212%2C10%2020%2C10%2020%2C18%2012%2C18%22%20fill%3D%22%23ffab9e%22%20fill-opacity%3D%221%22%3E%3C%2Fpolygon%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    },
+    {
+      "slug": "wirecall",
+      "name": "WireCall",
+      "url": "https://wirecall.thecompound.tech",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cg%20transform%3D%22translate(2.5%202.5)%20scale(0.84375)%22%3E%3Cpolygon%20points%3D%222%2C26%2016%2C26%209%2C6%22%20fill%3D%22%235279ff%22%3E%3C%2Fpolygon%3E%3Cpolygon%20points%3D%2216%2C6%2030%2C6%2023%2C26%22%20fill%3D%22%235279ff%22%20fill-opacity%3D%220.62%22%3E%3C%2Fpolygon%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    }
+  ]
+}

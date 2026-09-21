@@ -48,6 +48,9 @@ npx opennextjs-cloudflare populateCache remote
 echo "==> verify the worker"
 node scripts/verify-cf.mjs "$WORKER"
 
+echo "==> the layout gate, against the worker"
+node scripts/layout-gate.mjs "$WORKER"
+
 # Once the subdomain points at the Worker, prove the real host too. Until then this is skipped,
 # so the script does not fail on a domain nothing has been pointed at yet.
 if [ -n "$HOST" ]; then
@@ -55,6 +58,8 @@ if [ -n "$HOST" ]; then
   if [ "$SERVED" != "0" ]; then
     echo "==> verify $HOST"
     node scripts/verify-cf.mjs "https://$HOST"
+    echo "==> the layout gate, against $HOST"
+    node scripts/layout-gate.mjs "https://$HOST"
   else
     echo "==> $HOST is not on the Worker yet, skipping its verify"
   fi

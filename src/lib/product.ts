@@ -9,6 +9,11 @@
  * ⛔ THE TERMINAL BLOCK IS NOT IN THIS FILE. It is src/lib/demo.ts, written by
  * scripts/capture.mjs from the program's own stdout. A page that retypes output drifts from it
  * the first time the program changes a word, and nothing errors when it does.
+ *
+ * ⛔ THE GATE IS THIS CONSOLE'S ONE CONTROL, so every gate carries the SAME shape: a set of
+ * clauses, the exit codes it can return, the incident it was built against, and the command a
+ * reader types. A gate that carried a different shape would be a second design inside one page,
+ * and the grid would stop meaning one thing.
  */
 
 export const PRODUCT = {
@@ -39,6 +44,24 @@ export const PRODUCT = {
   accent: '#33C9C4',
   accentHover: '#5FDBD6',
 } as const;
+
+/* THE TOP RULE. Every figure on this site was read off something, so the first line of every
+ * page names what was opened and the day it was opened, before anything else is read. Each cell
+ * is one read: the thing on the left, what the thing is on the right. */
+/* ⛔ THE DATE IS ONE CELL AT THE END, NOT ONE PER CELL. Measured at 1440 on 2026-09-21: five
+ * cells each carrying their own date came to a scrollWidth of 1907 inside a 1440 viewport, so
+ * the last read was cut off at the frame and a reader saw four of five. Every read here was
+ * taken in the same pass, so the day is one fact about the strip rather than five about its
+ * cells. The DOI behind the census figures is a claim rather than a read of the package, so it
+ * lives in SOURCES on the method page and not here. */
+export const READS = [
+  { it: 'registry.npmjs.org/deferless', is: 'the published version' },
+  { it: 'README.md', is: 'every sentence here' },
+  { it: 'docs/SPEC.md', is: 'the fourteen kinds' },
+  { it: 'deferless demo', is: 'the captured block' },
+] as const;
+
+export const READ_ON = '2026-09-21';
 
 /* THE BADGES THE README CARRIES, in its own order. Each is a live third party read: the shield
  * renders whatever the source says today, which is what a badge is for. The last one reads
@@ -82,87 +105,311 @@ export const BADGES = [
   },
 ] as const;
 
-/* THE FOUR GATES, in the README's own order. `why` is the incident each one was built against,
- * because every one of them is a real failure with a date on it and not a category. */
-export const GATES = [
+/* THE FOUR STATUS INKS ARE THE FOUR EXIT CODES, and they mean the same thing in a cell, in the
+ * captured block and in a rail. They are declared once in globals.css. */
+export const EXITS = [
+  { code: '0', ink: 'pass', name: 'clean', say: 'Every check passed.' },
+  { code: '1', ink: 'fail', name: 'violated', say: 'At least one check failed on output that exists.' },
+  {
+    code: '2',
+    ink: 'caution',
+    name: 'could not run',
+    say: 'The spec could not be read, declared no checks, or nothing could be checked. It never collapses into 0.',
+  },
+  {
+    code: '3',
+    ink: 'dim',
+    name: 'never produced',
+    say: 'Every violation was that a glob matched zero files.',
+  },
+] as const;
+
+export type ExitCode = (typeof EXITS)[number]['code'];
+
+/* A CLAUSE. One thing a gate refuses, with what it reads to know and what makes it refuse.
+ * `rail` is where the answer comes from, and it is the same four words everywhere: the
+ * filesystem, ffmpeg pixels, a real browser, the shell. */
+export type Clause = {
+  name: string;
+  reads: string;
+  refuses: string;
+  rail: 'filesystem' | 'ffmpeg pixels' | 'a real browser' | 'the shell';
+};
+
+export type Gate = {
+  id: string;
+  cmd: string;
+  title: string;
+  glyph: string;
+  /* What the gate does, one sentence. */
+  what: string;
+  /* The real failure it was built against. Every one has a date on it in the source. */
+  incident: string;
+  /* What one row of this gate's grid is. */
+  unit: string;
+  clauses: readonly Clause[];
+  exits: readonly ExitCode[];
+  usage: string;
+  /* One measured fact about this gate, for the rail. */
+  measured: string;
+};
+
+/* THE FOURTEEN CHECK KINDS, from docs/SPEC.md. Six answer off the filesystem and eight decode
+ * real frames through ffmpeg at a small working width. The pixel group exists because the first
+ * version of the plan gate was metadata only, and a browser rendering a single h1 passed every
+ * check in a full video spec: a text slide and a product demo have identical ffprobe output. */
+export const CHECK_KINDS: readonly Clause[] = [
+  {
+    name: 'files',
+    reads: 'how many files a glob matched',
+    refuses: 'the count is outside min and max. With neither declared, an empty match still fails: a check that matched nothing has verified nothing.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'requires',
+    reads: 'the text of every matched file',
+    refuses: 'any declared pattern is absent from any matched file. Every pattern must appear in every file.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'forbids',
+    reads: 'the text of every matched file',
+    refuses: 'a banned pattern appears. This is the one that catches a renamed internal service, a placeholder that shipped, a leaked hostname.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'pairedFile',
+    reads: 'the directory beside every match',
+    refuses: 'a match has no companion of the given extension at the same basename. A page without its schema, a clip without its poster frame.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'sidecar',
+    reads: 'a manifest the producer wrote, by dotted field path',
+    refuses: 'the field is missing or is not the declared value. An undeclared capture fails closed, so a runtime value that leaves no trace in the artifact is still caught.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'media',
+    reads: 'the container: width, height, fps, pixel format',
+    refuses: 'a file that is present does not carry the declared mechanics. Every present file is checked exactly as hard whether or not the role is optional.',
+    rail: 'filesystem',
+  },
+  {
+    name: 'frameFill',
+    reads: 'uniform edge bands, sampled across a time window',
+    refuses: 'a band of identical ground spans the full width or height. It measures gutters rather than a content bounding box, because a dark dense interface has its own near-black margins.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'luminance',
+    reads: 'mean frame luma',
+    refuses: 'the mean sits outside the declared band. A dark dense product film has a ground; a stock montage does not.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'accentShare',
+    reads: 'the fraction of pixels within tolerance of the accent',
+    refuses: 'the share is over the ceiling or under the floor. Absent is a failure too, because an accent that never appears is not a mark.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'motionFloor',
+    reads: 'the area of pixels that changed between sampled frames',
+    refuses: 'the clip freezes for longer than the declared hold, or moves for less of its length than declared.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'textInk',
+    reads: 'median text line ink height as a fraction of frame height',
+    refuses: 'type inside the declared region and window is set too small to read at the size it ships.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'markPresent',
+    reads: 'normalised cross correlation of a template against sampled frames',
+    refuses: 'the mark is absent from a declared window, so an artifact cannot ship a redrawn mark or none at all.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'cutCadence',
+    reads: 'declared seams against real pixel discontinuities',
+    refuses: 'a declared seam is not a real cut, an undeclared cut exists, or a held shot is out of range.',
+    rail: 'ffmpeg pixels',
+  },
+  {
+    name: 'distinct',
+    reads: 'a 32 by 18 grayscale signature of the first frame of every pair',
+    refuses: 'two clips are the same clip shipped twice.',
+    rail: 'ffmpeg pixels',
+  },
+] as const;
+
+/* THE SEVEN QUESTIONS THE BROWSER GATE ASKS, from the README's own table. */
+export const RENDER_QUESTIONS: readonly Clause[] = [
+  {
+    name: 'visible',
+    reads: 'effective opacity, the whole ancestor chain multiplied',
+    refuses: 'text that occupies space is not actually painted.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'contrast',
+    reads: 'every text run against its computed background',
+    refuses: 'a run does not clear WCAG on the ground it is really painted on.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'overflow',
+    reads: 'document width at every width from 320 to 1920',
+    refuses: 'the page scrolls horizontally at any of them.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'wrap',
+    reads: 'the line box of every nav link, footer link and call to action',
+    refuses: 'a label breaks onto a second line.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'fold',
+    reads: 'the headline and the primary action at 1280 by 800',
+    refuses: 'either one sits below the fold.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'clipped',
+    reads: 'content against the start edge of its own scroll container',
+    refuses: 'content is trapped where no scroll position can reach it.',
+    rail: 'a real browser',
+  },
+  {
+    name: 'nested',
+    reads: 'a real wheel driven over every nested scroll region',
+    refuses: 'a region that looks scrollable does not scroll.',
+    rail: 'a real browser',
+  },
+] as const;
+
+const PROMOTE_CLAUSES: readonly Clause[] = [
+  {
+    name: 'gates run before the promote',
+    reads: 'a local production build, served',
+    refuses: 'any declared gate finds anything. The finding blocks instead of annotating, because it arrives while the work is still local.',
+    rail: 'the shell',
+  },
+  {
+    name: 'a missing gate file is a failure',
+    reads: 'every gate path declared in deferless.json',
+    refuses: 'a declared gate file is not there. A renamed check that silently stops running is indistinguishable from a check that found nothing.',
+    rail: 'the shell',
+  },
+  {
+    name: 'zero gates run is not a pass',
+    reads: 'how many gates actually executed',
+    refuses: 'the count is zero. If nothing could be checked, the honest answer is that it could not be checked.',
+    rail: 'the shell',
+  },
+];
+
+const DEPLOY_CLAUSES: readonly Clause[] = [
+  {
+    name: 'a peer is still working',
+    reads: 'interactive agent control sockets that hold a TTY',
+    refuses: 'another session is live. The deploy registers as pending and exits rather than shipping a tree somebody is still editing.',
+    rail: 'the shell',
+  },
+  {
+    name: 'it defers, it does not queue',
+    reads: 'the pending register',
+    refuses: 'nothing, and that is the point. When the tree goes quiet one pass ships everything pending, once, rather than ten builds of the same repo.',
+    rail: 'the shell',
+  },
+  {
+    name: 'a headless lane is not a peer',
+    reads: 'whether the socket has a TTY',
+    refuses: 'nothing, so a background lane firing constantly cannot keep the tree looking busy forever.',
+    rail: 'the shell',
+  },
+  {
+    name: 'a cold heartbeat loses the lock',
+    reads: 'the mutex heartbeat',
+    refuses: 'a stale holder. A lock with no expiry is how a fleet gets stranded for two days.',
+    rail: 'the shell',
+  },
+  {
+    name: 'DEPLOY_NOW overrides the wait',
+    reads: 'the environment',
+    refuses: 'nothing. It is a way to ship now, not a way to ship a failure: no gate result changes.',
+    rail: 'the shell',
+  },
+];
+
+/* THE FOUR GATES, in the README's own order. */
+export const GATES: readonly Gate[] = [
   {
     id: 'check',
     cmd: 'deferless check',
     title: 'The plan gate',
     glyph: 'file-text',
-    what:
-      'Turns an approved plan into something that can refuse output. You write a spec.json beside the plan, one check per binding sentence, and the quote field holds that sentence verbatim.',
-    why:
-      "A rule stated in prose is checked by the same judgement that just decided to break it. Every violation is reported in the plan's own words, so a failure is a quote from something a human approved rather than an error from a linter nobody remembers configuring.",
-    detail:
-      'Fourteen check kinds ship. Six are answerable from the filesystem: files, requires, forbids, pairedFile, sidecar, media. Eight decode real pixels out of video with ffmpeg: frame fill, luminance band, accent colour share, motion floor, text ink height, mark presence by cross correlation, cut cadence against declared seams, shot distinctness.',
+    what: 'Turns an approved plan into something that can refuse output. One check per binding sentence, and the quote field holds that sentence verbatim, so a failure is a quote from something a person approved.',
+    incident:
+      'A rule stated in prose is checked by the same judgement that just decided to break it. An agent follows a plan for about ninety minutes, hits something the plan did not anticipate, and invents a local fix. The fix builds, it renders, nothing errors. The sentence it contradicted is in a document.',
+    unit: 'check kind',
+    clauses: CHECK_KINDS,
+    exits: ['0', '1', '2', '3'],
+    usage: 'deferless check plan.spec.json ./out',
     measured:
-      'The pixel group exists because the first version was metadata only, and a browser rendering a single h1 passed every check in a full video spec. A text slide and a product demo have identical ffprobe output.',
-    code: 'deferless check plan.spec.json ./out',
+      'The first version was metadata only, and a browser rendering a single h1 passed every check in a full video spec. A text slide and a product demo have identical ffprobe output, which is why eight of the fourteen kinds decode real frames.',
   },
   {
     id: 'promote',
     cmd: 'deferless promote',
     title: 'The no deferrals gate',
     glyph: 'seal-check',
-    what:
-      'Runs every gate you declare against a local production build, before anything is promoted.',
-    why:
-      'The enabling mechanic for reporting a finding instead of fixing it was never laziness, it was ordering. The deploy script ran its live checks after the deploy had already landed, so by the time a finding appeared the work was live and writing it up genuinely was the only remaining move. Move the checks in front of the promote and the same finding blocks instead of annotates.',
-    detail:
-      'Two invariants, both tested. A missing gate file is a failure and not a skip, because a renamed check that silently stops running is indistinguishable from a check that found nothing wrong. And zero gates run is not a pass.',
+    what: 'Runs every gate you declare against a local production build, before anything is promoted.',
+    incident:
+      'The enabling mechanic for reporting a finding instead of fixing it was ordering, not laziness. The deploy script ran its live checks after the deploy had landed, so by the time a finding appeared the work was live and writing it up was the only remaining move.',
+    unit: 'invariant',
+    clauses: PROMOTE_CLAUSES,
+    exits: ['0', '1', '2'],
+    usage: 'deferless init\ndeferless promote',
     measured:
-      'If nothing could be checked, the honest answer is that it could not be checked, never that it was clean.',
-    code: 'deferless init\ndeferless promote',
+      'Both invariants are tested. Move the checks in front of the promote and the same finding blocks instead of annotates.',
   },
   {
     id: 'render',
     cmd: 'deferless render',
     title: 'The gate that opens the page',
     glyph: 'globe-hemisphere-west',
-    what:
-      'Never reads a file. It takes a URL, drives a real browser, and asks the questions a screenshot answers and a grep cannot.',
-    why:
+    what: 'Never reads a file. It takes a URL, drives a real browser, and asks the seven questions a screenshot answers and a grep cannot.',
+    incident:
       'Every other gate reads source, and all of them passed on the day a landing page shipped with an invisible hero. The h1 held its animation start frame at opacity 0.001, permanently. The element was in the DOM, at the right size, the right colour, the right position. There is no string to grep for that.',
-    detail:
-      'Seven questions per page: visible, contrast, overflow, wrap, fold, clipped, nested.',
+    unit: 'question',
+    clauses: RENDER_QUESTIONS,
+    exits: ['0', '1', '2'],
+    usage: 'npm i -D playwright && npx playwright install chromium\ndeferless render https://example.com/ --sample 6',
     measured:
-      "The --sample N flag reads the site's own sitemap.xml and takes up to N interior pages, one per distinct first path segment, so a sitemap with four thousand URLs of one shape contributes one of them. The sample is a tour of page types rather than N near identical rows.",
-    code: 'npm i -D playwright && npx playwright install chromium\ndeferless render https://example.com/ --sample 6',
+      'The sample flag reads the site own sitemap and takes up to N interior pages, one per distinct first path segment, so a sitemap with four thousand URLs of one shape contributes one of them. The sample is a tour of page types rather than N near identical rows.',
   },
   {
     id: 'deploy-gate',
     cmd: 'deferless deploy-gate',
     title: 'The multi agent deploy gate',
     glyph: 'stack-simple',
-    what:
-      'A POSIX shell library for the case where several agent sessions are editing the same tree at once. A deploy fired while other sessions are still working does not deploy. It registers as pending and exits, and when everything goes quiet one pass ships everything pending, once.',
-    why:
-      'It defers rather than queues, deliberately. A queued deploy builds a tree that three other sessions are still editing, ships it, and is stale before it finishes. Ten sessions produce ten builds of the same repo and only the last was ever worth running.',
-    detail:
-      'It counts a session as a peer by looking for interactive Claude Code control sockets with a TTY, because a headless lane fires constantly and would keep things looking busy forever. Underneath the deferral is a mutex with a heartbeat, stolen once the heartbeat goes cold, because a lock with no expiry strands a fleet for two days.',
+    what: 'A POSIX shell library for a tree several agent sessions are editing at once. A deploy fired while other sessions are working registers as pending and exits.',
+    incident:
+      'A queued deploy builds a tree that three other sessions are still editing, ships it, and is stale before it finishes. Ten sessions produce ten builds of the same repo and only the last was ever worth running.',
+    unit: 'rule',
+    clauses: DEPLOY_CLAUSES,
+    exits: ['0', '2'],
+    usage: '. node_modules/deferless/sh/deploy-lock.sh\ndeploy_gate my-app\n\nDEPLOY_NOW=1 ./scripts/deploy.sh',
     measured:
-      'Forty six regression tests, run under both bash and zsh. The worst bug this gate ever had was invisible in bash: zsh scopes a trap EXIT set inside a function to that function, so installing the release trap inside the acquire helper deleted the lock the instant it was taken. Two deploys then ran straight through each other while the code looked completely correct.',
-    code: '. node_modules/deferless/sh/deploy-lock.sh\ndeploy_gate my-app\n\nDEPLOY_NOW=1 ./scripts/deploy.sh',
+      'Forty six regression tests, run under both bash and zsh. The worst bug this gate ever had was invisible in bash: zsh scopes a trap EXIT set inside a function to that function, so installing the release trap inside the acquire helper deleted the lock the instant it was taken. Two deploys then ran straight through each other while the code looked correct.',
   },
 ] as const;
 
-/* THE EXIT CODES, from the README table. `ink` names which status ink the register paints the
- * code in, and the four inks are declared once in globals.css. */
-export const EXITS = [
-  { code: '0', ink: 'pass', say: 'Clean.' },
-  { code: '1', ink: 'fail', say: 'The output violates something that was agreed.' },
-  {
-    code: '2',
-    ink: 'caution',
-    say: 'The gate could not run. It never collapses into 0.',
-  },
-  {
-    code: '3',
-    ink: 'dim',
-    say: 'Every violation was that the thing was never produced.',
-  },
-] as const;
+export const GATE_IDS = GATES.map((g) => g.id);
 
 /* THE THREE THINGS THAT DO NOT EXIST, plus the fourth a patch would try to add. This is the
  * product, so it is a list of absences and not a sentence about a philosophy. */
@@ -189,9 +436,9 @@ export const REFUSALS = [
   },
 ] as const;
 
-/* THE HONEST LIMITATIONS, from the README section of that name. They are on this page because
- * the README puts them on its own front, and a product page that drops them is describing a
- * different package. */
+/* THE HONEST LIMITATIONS, from the README section of that name. They are on this site because
+ * the README puts them on its own front, and a page that drops them describes a different
+ * package. */
 export const LIMITS = [
   {
     id: 'hand',
@@ -206,7 +453,7 @@ export const LIMITS = [
   {
     id: 'ffmpeg',
     head: 'The pixel checks need ffmpeg',
-    say: 'Their thresholds are calibrated for dark, dense product UI. Recalibrate them against your own reference material rather than trusting the defaults. The source says where every number came from.',
+    say: 'Their thresholds are calibrated for dark, dense product interfaces. Recalibrate them against your own reference material rather than trusting the defaults. The source says where every number came from.',
   },
   {
     id: 'playwright',
@@ -216,9 +463,17 @@ export const LIMITS = [
   {
     id: 'shell',
     head: 'The deploy gate is macOS and Linux shell',
-    say: 'It detects Claude Code sessions specifically. The socket directory is configurable, and other agent runners need a small patch.',
+    say: 'It detects agent sessions specifically. The socket directory is configurable, and other agent runners need a small patch.',
   },
 ] as const;
+
+/* WHAT IS DIFFERENT, from the README section of that name. */
+export const PRIOR_ART = {
+  before:
+    'Pre-action authorization plugins, policy gateways, runtime interception and approval steps in front of every tool call all sit before the agent acts, and they answer whether an action is allowed.',
+  after:
+    'These gates sit after, and answer a different question: does the artifact that came out match the thing that was agreed, and did anything get quietly left behind on the way. No amount of pre-action policy answers that, because every individual action was allowed.',
+} as const;
 
 /* THE SPEC FRAGMENT the README prints to show what a check looks like. Verbatim. */
 export const SPEC_SAMPLE = `{
@@ -238,6 +493,7 @@ export const SPEC_SAMPLE = `{
 export const CENSUS = {
   artefacts: 445348,
   failing: 43199,
+  yamlShare: '88.4%',
   say: 'A census published the same week as this package measured 445,348 published Claude Code artefacts and found 43,199 of them fail a structural check. 88.4% of those are a YAML block that does not parse. Nothing in the publishing path checks it.',
   links: [
     { label: 'The census', href: 'https://toolproof.thecompound.tech/census' },
@@ -319,6 +575,23 @@ export const SOURCES = [
     quote:
       'the h1 held its animation start frame at opacity: 0.001, permanently. The element was in the DOM, at the right size, the right colour, the right position. There is no string to grep for that.',
     cite: 'README, The gate that opens the page',
+    url: 'https://github.com/kyisaiah47/deferless',
+    read_at: '2026-09-21',
+  },
+  {
+    id: 'questions',
+    claim: 'The browser gate asks seven questions per page.',
+    quote: 'Seven questions per page: visible, contrast, overflow, wrap, fold, clipped, nested.',
+    cite: 'README, The gate that opens the page',
+    url: 'https://github.com/kyisaiah47/deferless',
+    read_at: '2026-09-21',
+  },
+  {
+    id: 'prior-art',
+    claim: 'These gates sit after the agent acts, where pre-action policy cannot answer.',
+    quote:
+      'those all sit before the agent acts, and they answer is this action allowed. These gates sit after, and answer a different question',
+    cite: 'README, Prior art, and what is different',
     url: 'https://github.com/kyisaiah47/deferless',
     read_at: '2026-09-21',
   },

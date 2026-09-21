@@ -1,6 +1,6 @@
-/* DEFERLESS, THE GATE SHEET. This app's whole register, written here and imported from nowhere
- * else in the estate. There is no shared shell, no kit and no component library: those four
- * repos were backed up and purged on 2026-09-14 and every app is its own Next.js tree.
+/* DEFERLESS, THE CONSOLE. This app's whole register, written here and imported from nowhere else
+ * in the estate. There is no shared shell, no kit and no component library: those four repos were
+ * backed up and purged on 2026-09-14 and every app is its own Next.js tree.
  *
  * THE ACCENT IS #33C9C4, OKLCH L 0.760 C 0.120 h 191.6, and the derivation is arithmetic rather
  * than taste. Every chromatic product accent on the estate was read on 2026-09-21 from the
@@ -17,23 +17,25 @@
  * as that product at thumbnail size, and scripts/check-register.mjs re-derives the ring and
  * fails rather than trusting this paragraph.
  *
- * THE ACCENT PAINTS WHAT THE READER IS DOING, NEVER A VERDICT. The install line, the current
- * nav item, the focus ring, an anchor. A gate's result never takes it, because this product's
- * whole subject is the difference between pass, fail and could not run, and an accent that also
- * appears on a verdict makes a fourth ambiguous state.
+ * THE ACCENT PAINTS WHAT THE READER IS DOING, NEVER A VERDICT. The gate the reader pressed, the
+ * current nav item, the focus ring, the one action. A gate's RESULT never takes it, because this
+ * product's whole subject is the difference between pass, fail and could not run, and an accent
+ * that also appears on a verdict makes a fourth ambiguous state.
  *
- * THE FOUR STATUS INKS ARE THE EXIT CODES, and they are the same four everywhere on the page:
+ * THE FOUR STATUS INKS ARE THE FOUR EXIT CODES, and they are the same four everywhere on every
+ * page: in a cell, in a rail, and inside the captured block.
  *   pass    #8ed44a   0   clean
  *   fail    #ef6b70   1   the output violates something that was agreed
  *   caution #d8c76b   2   the gate could not run, and it never collapses into 0
- *   dim     #8a8a8a   3   every violation was that the thing was never produced
+ *   dim     #8a9090   3   every violation was that the thing was never produced
  *
  * `caution` and `dim` are the two that must never read as a pass or as a failure. 2 is the code
  * the README says matters most, so it gets its own ink rather than borrowing the failure one.
  *
  * TWO FACES, AND THE SPLIT IS THE SUBJECT. BDO Grotesk sets anything a person wrote. IBM Plex
  * Mono sets anything a machine wrote or a person types at a machine: a command, a path, a flag,
- * an exit code, a captured block, a check kind. Nothing is set in mono for texture.
+ * an exit code, a captured block, a check kind, every column head and every cell. Nothing is set
+ * in mono for texture.
  */
 
 @font-face {
@@ -49,7 +51,7 @@
   --panel-2: #151a1b;
   --ink: #e6e8e8;
   --ink-2: #a2a8a8;
-  --ink-3: #7d8484;
+  --ink-3: #8a9090;
   --line: #1f2526;
   --line-2: #2a3132;
 
@@ -57,711 +59,437 @@
   --accent-hover: #5fdbd6;
   --accent-line: rgb(51 201 196 / 0.34);
   --accent-wash: rgb(51 201 196 / 0.08);
+  /* The ink a control paints ON the accent. Measured against #33c9c4: 10.1:1. */
+  --on-accent: #04211f;
 
   --pass: #8ed44a;
   --fail: #ef6b70;
   --caution: #d8c76b;
-  --dim: #8a8a8a;
-
-  --sans: 'BDO Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: var(--font-mono), ui-monospace, 'SF Mono', Menlo, monospace;
 
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --in: 140ms var(--ease);
   --out: 240ms var(--ease);
 
-  /* THE SHELL. Every full bleed strip pads to this and the frame caps at it, so above 1120 the
-   * page is one block that centres and nothing stretches. 1120 is this product's own sum,
-   * 748 of reading column plus 40 of gutter plus 332 of margin note, not a breakpoint number. */
-  --shell: 1120px;
-  --read: 748px;
-  --note: 332px;
-  --gap: 40px;
-  --pad: 24px;
+  /* THE SHELL. Every full bleed strip pads to this and the frame caps at it, so above 1440 the
+   * page is one block that centres and nothing stretches. 1440 is the sum of this product's own
+   * parts, 248 + 852 + 340, never a round number off a breakpoint table. */
+  --shell: 1440px;
+  --rail-l: 248px;
+  --rail-r: 340px;
+  --pad: 22px;
+
+  --sans: 'BDO Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: var(--font-mono), ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  background: var(--ground);
-}
-
+* { box-sizing: border-box; }
+html { background: var(--ground); }
 body {
   margin: 0;
   background: var(--ground);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.62;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
+::selection { background: var(--accent-wash); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
-::selection {
-  background: var(--accent-wash);
-  color: var(--ink);
-}
+a { color: var(--ink); text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+a:hover { text-decoration-color: var(--accent); }
+code { font-family: var(--mono); font-size: 0.92em; color: var(--ink); }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent-line);
-  transition: color var(--in), border-color var(--in);
-}
-a:hover {
-  color: var(--accent-hover);
-  border-bottom-color: var(--accent-hover);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-code,
-kbd,
-samp,
-pre {
-  font-family: var(--mono);
-  font-variant-ligatures: none;
-}
-
-/* ── the strip, this page's one layout primitive ───────────────────────────────────────────
- * A full bleed band with a hairline under it, holding one block capped at --shell. Every
- * section of the page is one, so the page is a stack of rules and the reader learns the rhythm
- * once. Nothing on the page is a card. */
-.strip {
-  border-bottom: 1px solid var(--line);
-}
+/* THE STRIP PRIMITIVE. A full bleed band paints its ground and its hairline edge to edge and
+   pads its CONTENT to the shell, so the rule reaches the frame at every width. */
+.strip { width: 100%; }
 .strip > .in {
   max-width: var(--shell);
   margin: 0 auto;
-  padding: 0 var(--pad);
+  padding-left: var(--pad);
+  padding-right: var(--pad);
 }
 
-/* ── masthead ──────────────────────────────────────────────────────────────────────────── */
-.mast {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgb(10 10 10 / 0.86);
-  backdrop-filter: blur(10px);
+/* THE TOP RULE, AND ITS UNIT IS A CELL. Every sentence on this site was read off the package, so
+   the first line of every page names what was opened and the day, before anything else is read.
+   Each cell is <b>the thing</b> then what the thing is, hairline divided, one line, scrolling
+   inside itself rather than wrapping: a wrapped strip above the masthead becomes a wall. */
+.rule { background: var(--panel); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.rule::-webkit-scrollbar { display: none; }
+.rule .in { display: flex; align-items: stretch; flex-wrap: nowrap; padding-top: 0; padding-bottom: 0; }
+.rule-cell {
+  display: flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 7px 15px 7px 0; margin-right: 15px; border-right: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.01em; color: var(--ink-3);
 }
-.mast > .in {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  height: 56px;
-}
-.mast-id {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--ink);
-  border-bottom: 0;
-  font-family: var(--mono);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-.mast-id:hover {
-  color: var(--ink);
-}
-.mast-id .mk {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
+.rule-cell:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.rule-cell b { color: var(--ink-2); font-weight: 400; }
+.rule-cell i { color: var(--ink-3); font-style: normal; opacity: 0.75; }
+
+/* THE MASTHEAD. The mark and the name with the app switch beside them, what this package
+   refuses, its three destinations each with its own glyph, whether it is published, and the one
+   action it takes. */
+.mast { background: var(--ground); border-bottom: 1px solid var(--line); }
+.mast .in { display: flex; align-items: center; gap: 18px; padding-top: 12px; padding-bottom: 12px; }
+.mast-lock { display: flex; align-items: center; gap: 8px; flex: none; }
+.mast-id { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.mast-id img.mk { width: 24px; height: 24px; display: block; }
+.mast-id strong { font-family: var(--mono); font-size: 16px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; }
+/* The standing line takes the slack, so the nav sits at the same place on every route rather
+   than moving with the length of whatever is beside it. */
 .mast-standing {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-3);
+  padding-left: 18px; border-left: 1px solid var(--line);
 }
-.mast-nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-/* The vertical padding is the tap box and nothing else: a 13.5px line is a 22px target, and
- * WCAG 2.5.8 wants 24 in both directions or 24px of clearance. 4px above and below takes it to
- * 30 without moving a single glyph, because the bar centres its children. */
+.mast-nav { display: flex; align-items: center; gap: 2px; flex: none; }
 .mast-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-2);
-  border-bottom: 0;
-  font-size: 13.5px;
-  padding: 4px 0;
+  display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px;
+  color: var(--ink-2); text-decoration: none; font-size: 13px; white-space: nowrap;
+  transition: color var(--in), background var(--in);
 }
-.mast-nav a:hover {
-  color: var(--ink);
+.mast-nav a:hover { color: var(--ink); background: var(--panel-2); }
+.mast-nav a[aria-current] { color: var(--accent); background: var(--accent-wash); box-shadow: inset 0 -2px 0 var(--accent); }
+.live {
+  display: flex; align-items: center; gap: 8px; flex: none; white-space: nowrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3);
 }
-.mast-nav a[aria-current='page'] {
-  color: var(--accent);
-}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pass); box-shadow: 0 0 0 3px rgb(142 212 74 / 0.14); flex: none; }
+/* The one action. It points at the captured block, because running the demo is the only thing a
+   reader can do with this package before installing it, and nothing here is for sale. */
 .mast-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  color: var(--accent);
-  border: 1px solid var(--accent-line);
-  border-radius: 3px;
-  padding: 6px 11px;
-  background: var(--accent-wash);
-  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 7px; flex: none; padding: 8px 13px;
+  background: var(--accent); color: var(--on-accent); text-decoration: none;
+  font-family: var(--mono); font-size: 12.5px; font-weight: 500; white-space: nowrap;
+  transition: background var(--in);
 }
-.mast-cta:hover {
-  color: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
+.mast-cta:hover { background: var(--accent-hover); }
 
-/* ⛔ EVERY ANCHOR TARGET CLEARS THE STICKY MASTHEAD. Without this a jump to #output lands with
- * the section heading painted underneath the 56px bar, which reads as a broken link rather than
- * as a scroll offset. 72px is the bar plus a line of air. */
-section[id],
-.gate[id] {
-  scroll-margin-top: 72px;
+/* THE APP SWITCH AND THE APP STRIP. The switch sets data-apps on the header and this opens the
+   row, so the family list is a grid-template-rows transition inside the masthead rather than a
+   popover this app would have to position against a scrolling page. */
+.app-switch {
+  display: inline-grid; place-items: center; flex: none; width: 22px; height: 22px; padding: 0;
+  background: none; border: 0; color: var(--ink-3); cursor: pointer;
+  transition: color var(--in), background var(--in);
 }
+.app-switch svg { display: block; width: 14px; height: 14px; }
+.app-switch:hover { color: var(--ink); background: var(--panel-2); }
+.app-switch[aria-expanded='true'] { color: var(--accent); background: var(--accent-wash); }
+.apps {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows var(--out), visibility 0s linear 240ms;
+}
+header[data-apps='open'] .apps { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows var(--out), visibility 0s; }
+.apps-in { min-height: 0; overflow: hidden; }
+.apps-row {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: stretch;
+  max-width: var(--shell); margin: 0 auto; padding: 0 var(--pad);
+  border-top: 1px solid var(--line);
+}
+.apps-lab {
+  display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-3);
+  padding-right: 20px; margin-right: 20px; border-right: 1px solid var(--line);
+}
+.apps-lab a { color: var(--ink-3); text-decoration: none; transition: color var(--in); }
+.apps-lab a:hover { color: var(--accent); }
+.apps-lab b { font-weight: 400; color: var(--ink-2); }
+.apps-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 18px; padding: 12px 0; }
+.app { display: inline-flex; align-items: center; gap: 8px; min-width: 0; white-space: nowrap; font-size: 13px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink-2); text-decoration: none; transition: color var(--in); }
+.app img { width: 16px; height: 16px; display: block; flex: none; }
+.app:hover { color: var(--ink); }
 
-.ico {
-  width: 1em;
-  height: 1em;
-  flex: none;
-  display: block;
+/* THE FOLIO: what this page is holding, counted, on one line directly under the masthead.
+   EVERY CELL IS A FIGURE INSIDE ITS OWN SENTENCE AT ONE SIZE. The figure and its words are the
+   same size in the same face, which is what keeps this out of the banned stat eyebrow shape:
+   there the figure dominates and a small tracked label sits under it, and the size jump is the
+   whole of what makes that wrong. scripts/check-register.mjs asserts the ratio is 1.00. */
+.folio { background: var(--panel-2); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.folio::-webkit-scrollbar { display: none; }
+.folio .in { display: flex; align-items: stretch; flex-wrap: nowrap; padding-top: 0; padding-bottom: 0; }
+.folio-cell {
+  display: flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 10px 17px 10px 0; margin-right: 17px; border-right: 1px solid var(--line);
+  font-family: var(--mono); font-size: 12px; color: var(--ink-3);
 }
+.folio-cell:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.folio-cell b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.folio-cell[data-ink='pass'] b { color: var(--pass); }
+.folio-cell[data-ink='fail'] b { color: var(--fail); }
+.folio-cell[data-ink='caution'] b { color: var(--caution); }
 
-/* ── the head band ─────────────────────────────────────────────────────────────────────── */
-.head > .in {
-  padding-top: 76px;
-  padding-bottom: 56px;
-  max-width: var(--shell);
-}
-h1 {
-  margin: 0 0 18px;
-  font-size: 38px;
-  line-height: 1.16;
-  font-weight: 500;
-  letter-spacing: -0.022em;
-  max-width: 17ch;
-}
-.lede {
-  margin: 0 0 30px;
-  max-width: 62ch;
-  font-size: 17px;
-  color: var(--ink-2);
-}
+/* THE HEAD BAND. A CLAIM ON THE LEFT AND EVIDENCE ON THE RIGHT, never two columns of prose.
+   Measured off the dev apps at 1440 on 2026-09-21: KitGrade sets a headline sentence with the
+   stacks named inline and a bordered REPOSITORY / BUILT ON / EVIDENCE / PRICE panel beside it;
+   BlockDex sets the same sentence shape with three label and figure pairs beside it; StackTab
+   sets it with three priced cards. None of them puts a second paragraph in that column, and a
+   second paragraph is what this band had before. */
+.head { background: var(--ground); border-bottom: 1px solid var(--line); }
+.head .in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: start; padding-top: 22px; padding-bottom: 20px; }
+.head h1 { margin: 0 0 8px; }
+.head .lede { margin: 0 0 14px; }
 
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 12px;
-  margin: 0 0 24px;
-}
-/* The anchor carries the tap box, never the shield: a shield is 20px tall by its own design and
- * stretching it would misdraw somebody else's label. 4px above and below takes the target to
- * 28px, and the 12px gap keeps the boxes apart. */
-.badges a {
-  border-bottom: 0;
-  display: inline-flex;
-  padding: 4px 0;
-}
-/* A shield is a picture of a label. It is drawn at its own intrinsic size and never stretched,
- * which is also what keeps it out of HARD RULE 8: nothing here approaches the column. */
-.badges img {
-  height: 20px;
-  width: auto;
-  display: block;
-}
+/* THE EVIDENCE PANEL. Label on the left, the fact on the right, one hairline between rows, the
+   whole thing boxed. It is the same object the rails use, given a frame. */
+.facts { border: 1px solid var(--line); background: var(--panel); min-width: 290px; }
+.facts-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 6px 14px; border-bottom: 1px solid var(--line); }
+.facts-row:last-child { border-bottom: 0; }
+.facts-row dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.facts-row dd { margin: 0; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--ink); }
+.facts-row dd a { color: var(--ink); }
+.facts-row[data-ink='pass'] dd { color: var(--pass); }
 
-.run {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: center;
+/* THE BAR: the full bleed strip carrying this console's one control, the gate. Pressing a gate
+   re-reads the whole page: the folio counts, the grid, both rails and the usage block. */
+.bar { background: var(--panel); border-bottom: 1px solid var(--line); }
+.bar .in { padding-top: 18px; padding-bottom: 18px; }
+/* A CONTROL ROW: its name in a fixed left gutter, its chips filling the rest. StackTab labels
+   DATABASE, AUTH, PAYMENTS and HOSTING this way and BlockDex labels KIND, ACCESS and ORDER,
+   so a reader learns what a chip is choosing before reading any chip. The gutter is fixed so
+   several rows line their chips up on the same edge. */
+.bar-row { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 16px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+.bar-row:first-child { border-top: 0; }
+.bar-lab { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.bar-lab svg { width: 13px; height: 13px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  background: var(--ground); border: 1px solid var(--line); color: var(--ink-2); cursor: pointer;
+  padding: 6px 11px; font-family: var(--mono); font-size: 12px;
+  transition: border-color var(--in), color var(--in), background var(--in);
 }
-.run-cmd {
-  font-family: var(--mono);
-  font-size: 14px;
-  color: var(--accent);
-  background: var(--accent-wash);
-  border: 1px solid var(--accent-line);
-  border-radius: 3px;
-  padding: 9px 14px;
-}
-.run-cmd:hover {
-  color: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
-.run-alt {
-  font-size: 13.5px;
-  color: var(--ink-2);
-  border-bottom-color: var(--line-2);
-  padding: 3px 0;
-}
-.run-alt:hover {
-  color: var(--ink);
-}
+.chip:hover { color: var(--ink); border-color: var(--line-2); }
+.chip[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-wash); color: var(--ink); }
+.chip svg { width: 14px; height: 14px; flex: none; color: var(--ink-3); }
+.chip[aria-pressed='true'] svg { color: var(--accent); }
+.chip b { font-weight: 500; color: inherit; }
+.chip i { font-style: normal; color: var(--ink-3); }
+/* A chip that states a fact rather than taking a press. Same object, no pointer. */
+.chip[data-static] { cursor: default; }
+.chip[data-static]:hover { color: var(--ink-2); border-color: var(--line); }
 
-/* ── a section: the reading column, with a margin note beside it ──────────────────────────
- * ⛔ THE NOTE COLUMN CARRIES PROSE, NEVER A PICTURE AND NEVER A DECORATION. It is the second
- * exit of HARD RULE 8 used as it was meant to be: two real columns of words, either side. */
-.sec > .in {
-  padding-top: 52px;
-  padding-bottom: 52px;
-  display: grid;
-  grid-template-columns: minmax(0, var(--read)) minmax(0, var(--note));
-  gap: var(--gap);
-  align-items: start;
+/* THE FRAME: rail, track, rail. The column lines are painted on the grid container full height,
+   never on a rail's own border, so a short rail cannot cut the line short. */
+.frame {
+  max-width: var(--shell); margin: 0 auto; padding: 0 var(--pad);
+  display: grid; grid-template-columns: var(--rail-l) minmax(0, 1fr) var(--rail-r);
+  gap: 0; position: relative;
 }
-/* ⛔ A ONE COLUMN SECTION IS A BLOCK, NOT A ONE COLUMN GRID. The first cut kept `display: grid`
- * and set a single track, so the grid's own 40px `gap` became a ROW gap between the heading and
- * the first thing under it. Measured at 1440: 115px between "Where every claim on this page came
- * from" and its paragraph, against the 16px the h2 declares. It reads as a missing element. */
-.sec.wide > .in {
-  display: block;
+.frame::before, .frame::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); pointer-events: none;
 }
-h2 {
-  margin: 0 0 16px;
-  font-size: 22px;
-  line-height: 1.28;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+.frame::before { left: calc(var(--pad) + var(--rail-l)); }
+.frame::after { right: calc(var(--pad) + var(--rail-r)); }
+.frame--wide { grid-template-columns: var(--rail-l) minmax(0, 1fr); }
+.frame--wide::after { display: none; }
+/* THE RAIL IS PINNED, NEVER STRETCHED. `.frame`'s grid stretches every column to the height of
+   the tallest one by default, which is `.track`. A rail's own content (a stat legend, a
+   sources list) is a few hundred px, so an unpinned rail sat in a box 2000 to 3000px tall with
+   nothing painted below its own content. The empty box read as a huge blank gap standing right
+   above the footer, bounded by the frame's own full-height divider lines (::before, ::after
+   are pinned to .frame on purpose, so they still run the full column even though the rail
+   itself no longer does). `align-self: start` lets the rail's box end where its content ends;
+   `position: sticky` keeps it in view while the reader scrolls the taller track beside it, the
+   same fix `sticky-rail-scrolls.mjs` prescribes estate wide. `max-height` plus
+   `overflow-y: auto` are the same gate's own guard against a rail ever growing past the
+   viewport it is pinned into. Caught and fixed 2026-09-21, gated by scripts/layout-gate.mjs. */
+.rail {
+  padding: 26px 20px 60px 0; min-width: 0; align-self: start;
+  position: sticky; top: 20px; max-height: calc(100svh - 40px); overflow-y: auto;
 }
-h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.008em;
-}
-p {
-  margin: 0 0 14px;
-  max-width: 68ch;
-}
-p:last-child {
-  margin-bottom: 0;
-}
-.sec .note {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-3);
-  border-left: 1px solid var(--line);
-  padding-left: 18px;
-}
-.sec .note h4 {
-  margin: 0 0 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-  font-weight: 400;
-}
-.sec .note p {
-  margin-bottom: 10px;
-}
+.rail--r { padding: 26px 0 60px 20px; }
+/* THE BOTTOM PADDING MATCHES THE TOP, 26px. It was 72px, which stacked with .foot's own
+   40px margin-top and 30px .in padding-top into roughly 142px of unbroken black between the
+   last real content and the first line a reader sees in the footer, with the frame's own
+   full-height divider lines running straight through the middle of it. .foot already owns
+   the separation from here down; .track does not need to reserve a second helping of it. */
+.track { padding: 26px 22px 20px; min-width: 0; }
 
-/* ── the captured terminal block ──────────────────────────────────────────────────────────
- * The one place on this site where the bytes are the program's and not ours. It scrolls inside
- * itself rather than wrapping, because a gate's output is column aligned and a wrap destroys
- * the alignment that makes it readable. */
-/* ⛔ A HORIZONTAL SCROLLER SAYS SO. compound-ops' mobile-shape gate found this block and both
- * code fences scrolling 97px and 187px sideways at 390 with nothing on screen saying the track
- * continued: a reader sees a clipped line and reads it as a truncated one. The shadow pair below
- * is the background-attachment: local trick, so the right hand cue paints ONLY while there is
- * more to the right and disappears at the end of the track. A plain mask would fade the edge
- * even when the block fits, which would be a decoration that lies. */
-.term,
-pre.code {
-  background-image:
-    linear-gradient(to right, var(--panel), rgb(16 19 20 / 0)),
-    linear-gradient(to right, rgb(16 19 20 / 0), var(--panel)),
-    linear-gradient(to right, rgb(51 201 196 / 0.22), rgb(51 201 196 / 0)),
-    linear-gradient(to left, rgb(51 201 196 / 0.22), rgb(51 201 196 / 0));
-  background-position: left center, right center, left center, right center;
-  background-repeat: no-repeat;
-  background-size: 28px 100%, 28px 100%, 12px 100%, 12px 100%;
-  background-attachment: local, local, scroll, scroll;
-}
+/* BANDS */
+.band { border-top: 1px solid var(--line); padding-top: 22px; margin-top: 34px; }
+.band:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+/* A SECTION HEAD IS ONE LINE: a mono eyebrow saying what KIND of thing follows, the sentence
+   itself beside it, and the count or the read date pushed to the right edge. KitGrade sets
+   ASSERTED and MEASURED this way and RuleStack sets THE NIGHT the same, which is what keeps a
+   long track legible as a sequence rather than as a stack of headlines. */
+.band-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.band-head .eyebrow { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+.band-head h2 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.012em; }
+.band-head .n { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-left: auto; }
+.band > p { margin: 0 0 16px; color: var(--ink-2); max-width: 74ch; }
 
+h1 { font-size: 30px; line-height: 1.22; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 12px; max-width: 30ch; }
+h3 { font-size: 15px; font-weight: 600; margin: 0 0 6px; }
+.lede { font-size: 16px; color: var(--ink-2); max-width: 70ch; margin: 0; }
+.lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+
+/* THE TWO COLUMN SECTION, the shape the head band takes.
+   ⛔ THE RATIO LIVES HERE RATHER THAN IN AN INLINE STYLE ON A PAGE. An inline
+   grid-template-columns beats every rule in this file including a media query, so the collapse
+   below could never reach it and the headline would still be set two words to a line at 390. */
+.two { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.two p { margin: 0 0 12px; color: var(--ink-2); }
+.two p:last-child { margin-bottom: 0; }
+
+/* THE GRID. Its unit is a CLAUSE: one thing a gate refuses, what it reads to know, and what
+   makes it refuse. Every gate's rows are the same three columns plus the rail the answer comes
+   off, so pressing a gate changes the rows and never the shape. */
+.grid-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+table.grid { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 12px; }
+table.grid th, table.grid td { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; padding: 9px 12px; }
+table.grid th:last-child, table.grid td:last-child { border-right: 0; }
+table.grid tbody tr:last-child td { border-bottom: 0; }
+table.grid thead th {
+  background: var(--panel-2); font-weight: 400; vertical-align: bottom; white-space: nowrap;
+  font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+}
+table.grid tbody tr:hover td { background: var(--panel-2); }
+table.grid td.k { color: var(--ink); white-space: nowrap; width: 1%; }
+table.grid td.w { font-family: var(--sans); font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+table.grid td.w b { color: var(--ink); font-weight: 500; }
+table.grid td.r { color: var(--ink-3); white-space: nowrap; width: 1%; }
+table.grid td.n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; width: 1%; }
+/* Measured at 1440 on 2026-09-21: the track is 828px. The two prose columns take the slack and
+   the three mono columns are sized to their own longest string, so nothing clips and the table
+   never widens the page. */
+table.grid td.k, table.grid th.k { min-width: 128px; }
+
+/* THE LEDGER, for a list that is facts rather than clauses. A wide one scrolls inside its OWN
+   container, never by widening the page. */
+.led-wrap { overflow-x: auto; }
+table.led { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 12px; }
+table.led th, table.led td { border-bottom: 1px solid var(--line); padding: 9px 14px 9px 0; text-align: left; vertical-align: top; }
+table.led thead th { font-weight: 400; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+table.led tbody tr:last-child td { border-bottom: 0; }
+table.led td.w { color: var(--ink-2); font-family: var(--sans); font-size: 13px; line-height: 1.45; }
+table.led a { color: var(--ink-2); }
+
+/* THE EXIT CODE CHIP. The code in its own ink, the word beside it. The ink IS the meaning, so a
+   code never appears without it and the accent never paints one. */
+.st { display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; font-family: var(--mono); font-size: 12px; }
+.st b { font-weight: 500; }
+.st[data-ink='pass'] b { color: var(--pass); }
+.st[data-ink='fail'] b { color: var(--fail); }
+.st[data-ink='caution'] b { color: var(--caution); }
+.st[data-ink='dim'] b { color: var(--ink-3); }
+.st i { font-style: normal; color: var(--ink-3); }
+.exits { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* RAILS */
+.rail h3 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; margin: 0 0 10px; display: flex; align-items: center; gap: 7px; }
+.rail h3 svg { width: 13px; height: 13px; }
+.rail section { margin-bottom: 30px; }
+.rail p { margin: 0 0 10px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.rail p:last-child { margin-bottom: 0; }
+.rail dl { margin: 0; }
+.rail dt { font-family: var(--mono); font-size: 11.5px; color: var(--ink); margin-top: 12px; }
+.rail dt:first-child { margin-top: 0; }
+.rail dd { margin: 3px 0 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.45; }
+.rail-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 11.5px; padding: 6px 0; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+.rail-row:last-child { border-bottom: 0; }
+.rail-row > span:last-child { color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* A rail row that names a thing carries that thing's glyph, the way KitGrade's bench list and
+   BlockDex's saved queries do, so the rail reads as a list of objects rather than of strings. */
+.rail-row .t { display: inline-flex; align-items: center; gap: 8px; min-width: 0; color: var(--ink-2); }
+.rail-row .t svg { width: 13px; height: 13px; flex: none; color: var(--ink-3); }
+.rail-row[data-on='true'] .t { color: var(--ink); }
+.rail-row[data-on='true'] .t svg { color: var(--accent); }
+
+/* THE CAPTURED BLOCK. Every byte came out of the program through scripts/capture.mjs. The four
+   inks are the register's own and mean here exactly what they mean in a cell. */
 .term {
-  margin: 0;
-  background-color: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 18px 20px;
-  overflow-x: auto;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  line-height: 1.75;
-  color: var(--ink-2);
-  white-space: pre;
-  tab-size: 2;
+  margin: 0; border: 1px solid var(--line); background: var(--panel); color: var(--ink-2);
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+  padding: 16px 18px; overflow-x: auto; white-space: pre; tab-size: 2;
 }
-.term .t-pass {
-  color: var(--pass);
-}
-.term .t-fail {
-  color: var(--fail);
-}
-.term .t-cmd {
-  color: var(--ink);
-}
-.term .t-quote {
-  color: var(--ink-3);
-}
+.term .t-pass { color: var(--pass); }
+.term .t-fail { color: var(--fail); }
+.term .t-quote { color: var(--caution); }
+.term .t-cmd { color: var(--ink); }
 .term-cap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 10px 0 0;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-3);
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 9px 0 0;
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
 }
+.term-cap span { display: inline-flex; align-items: center; gap: 6px; }
 
-pre.code {
-  margin: 0;
-  background-color: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 14px 16px;
-  overflow-x: auto;
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--ink-2);
-  white-space: pre;
+/* A COMMAND A READER TYPES. It is not captured output, and the two must never be mistaken for
+   one another, so it carries its own tint and a hairline the whole way round. An object's
+   identity is its own colour on every edge, never a bar stapled to one of them. */
+.cmd {
+  margin: 0; border: 1px solid var(--accent-line); background: var(--accent-wash);
+  padding: 11px 14px; overflow-x: auto; white-space: pre;
+  font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ink);
 }
+.spec { margin: 0; border: 1px solid var(--line); background: var(--panel); padding: 14px 16px; overflow-x: auto; white-space: pre; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: var(--ink-2); }
 
-/* ── the refusal list ─────────────────────────────────────────────────────────────────── */
-.refuse {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line);
-}
-.refuse li {
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 18px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
-}
-.refuse b {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--ink);
-}
-/* THE STRIKE IS THE WHOLE POINT. These four are absences, so the name of each is drawn as a
- * thing that is not there rather than as a heading.
- *
- * ⛔ IT IS text-decoration AND NOT A ::before BAR. The first cut drew a 1px block pulled up with
- * a negative margin, which draws ONE bar under the LAST line of the name. Measured at 1440:
- * "a known issues file" and "a warn instead of fail toggle" both wrap in the 220px column, so
- * three of the four names rendered with a red rule under the second line instead of a line
- * through the words. text-decoration follows every line box, which is what this needs. */
-.refuse b {
-  text-decoration: line-through;
-  text-decoration-color: var(--fail);
-  text-decoration-thickness: 1px;
-}
-.refuse span {
-  font-size: 14px;
-  color: var(--ink-2);
-}
+/* THE BADGES the README carries. Live third party reads, drawn at their own height in a row. */
+.badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0; }
+.badges img { height: 20px; width: auto; display: block; }
 
-/* ── the gate rows ────────────────────────────────────────────────────────────────────── */
-.gate {
-  border-top: 1px solid var(--line);
-  padding: 26px 0;
-}
-.gate:last-child {
-  border-bottom: 1px solid var(--line);
-}
-.gate-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 4px;
-}
-.gate-head .ico {
-  font-size: 16px;
-  color: var(--accent);
-}
-.gate-cmd {
-  font-family: var(--mono);
-  font-size: 13.5px;
-  color: var(--ink);
-}
-.gate-title {
-  font-size: 13.5px;
-  color: var(--ink-3);
-}
-.gate-body {
-  display: grid;
-  grid-template-columns: minmax(0, var(--read)) minmax(0, var(--note));
-  gap: var(--gap);
-  align-items: start;
-  margin-top: 14px;
-}
-.gate-body > pre.code {
-  grid-column: 1;
-}
-.gate-why {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-3);
-  border-left: 1px solid var(--line);
-  padding-left: 18px;
-}
+/* FOOTER */
+.foot { border-top: 1px solid var(--line); background: var(--panel); margin-top: 20px; }
+.foot .in { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; padding-top: 30px; padding-bottom: 30px; }
+.foot h4 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; margin: 0 0 9px; }
+.foot ul { list-style: none; margin: 0; padding: 0; }
+.foot li { margin-bottom: 6px; font-size: 13px; }
+.foot a { color: var(--ink-2); text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+.foot-line { border-top: 1px solid var(--line); background: var(--panel); }
+.foot-line .in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+/* LAYER 2 OF THE STUDIO CREDIT. "Built by" is live text and the studio's name is never typed
+   beside it, because the name is inside the picture and alt="Compound Labs" is its machine
+   readable copy. Both dimensions are declared so the bar does not reflow while it loads. */
+.credit { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-3); text-decoration: none; }
+.credit:hover { color: var(--ink-2); }
+.studio-credit-mark { display: block; width: 80px; height: 20px; opacity: 0.8; }
+.credit:hover .studio-credit-mark { opacity: 1; }
 
-/* ── the exit code table ──────────────────────────────────────────────────────────────── */
-.exits {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.exits th {
-  text-align: left;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  font-weight: 400;
-  color: var(--ink-3);
-  padding: 0 0 8px;
-  border-bottom: 1px solid var(--line);
-}
-.exits td {
-  padding: 11px 0;
-  border-bottom: 1px solid var(--line);
-  vertical-align: baseline;
-  color: var(--ink-2);
-}
-.exits td.x {
-  width: 72px;
-  font-family: var(--mono);
-  font-size: 14px;
-}
-.exits td.x[data-ink='pass'] {
-  color: var(--pass);
-}
-.exits td.x[data-ink='fail'] {
-  color: var(--fail);
-}
-.exits td.x[data-ink='caution'] {
-  color: var(--caution);
-}
-.exits td.x[data-ink='dim'] {
-  color: var(--dim);
-}
+.ico { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; flex: none; }
 
-/* ── the limits and the sources ───────────────────────────────────────────────────────── */
-.limits {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line);
+/* MOBILE. The rails are not squeezed, they move under the track in their own order, and every
+   wide box keeps its own horizontal scroller rather than reflowing into unreadable columns.
+   THE MASTHEAD SHEDS IN ITS OWN ORDER, and everything it sheds is printed somewhere else on the
+   page, so nothing becomes unreachable at any width. The standing line goes first: it is the
+   same sentence on every route and the head band says it at length. The published marker goes
+   next, and the top rule carries the same read. The mark, the name, the switch, the three
+   destinations and the one action are never dropped. */
+@media (max-width: 1240px) { .mast-standing { display: none; } }
+@media (max-width: 1180px) { :root { --rail-l: 208px; --rail-r: 276px; } }
+@media (max-width: 1000px) {
+  .live { display: none; }
+  .frame, .frame--wide { grid-template-columns: minmax(0, 1fr); }
+  .frame::before, .frame::after { display: none; }
+  .track { padding: 24px 0 34px; order: 1; }
+  .rail { order: 2; padding: 24px 0 0; border-top: 1px solid var(--line); }
+  .rail--r { order: 3; padding: 24px 0 60px; }
+  .two { grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+  .head .in { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .facts { min-width: 0; }
+  .foot .in { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.limits li {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-}
-.limits h3 {
-  margin-bottom: 4px;
-}
-.limits p {
-  font-size: 14px;
-  color: var(--ink-2);
-}
-
-.src {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line);
-  font-size: 13.5px;
-}
-.src li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--ink-2);
-}
-/* ⛔ NO AUTOMATIC QUOTE MARKS. `q` adds a pair of its own, and one of these quotes is a JSON
- * fragment that opens with a double quote, so the row rendered a doubled mark that reads as a
- * typo in the source rather than as part of the quoted bytes. The quotation is shown with a
- * rule instead, which cannot collide with the quoted text whatever it starts with. */
-.src q {
-  display: block;
-  quotes: none;
-  color: var(--ink-3);
-  margin: 6px 0;
-  padding-left: 12px;
-  border-left: 2px solid var(--line-2);
-  font-style: normal;
-}
-.src q::before,
-.src q::after {
-  content: none;
-}
-.src .cite {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-3);
-}
-
-/* ── footer, and the Compound Labs credit ─────────────────────────────────────────────────
- * THE CREDIT IS FOUR LAYERS AND THIS FILE OWNS ONE OF THEM. The mark is a picture in a fixed
- * 80x20 box with object-fit: contain, both dimensions declared, because an image with only a
- * height reserves nothing until it loads and reflows the bar. The words "Built by" stay live
- * text beside it and the studio's name is never typed there, because it is inside the picture
- * and the alt is its machine readable copy. */
-.foot > .in {
-  padding: 36px var(--pad) 28px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px 40px;
-  align-items: flex-start;
-}
-.foot h4 {
-  margin: 0 0 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  font-weight: 400;
-  color: var(--ink-3);
-}
-.foot ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 13.5px;
-  line-height: 1.9;
-}
-.foot ul a {
-  color: var(--ink-2);
-  border-bottom: 0;
-}
-.foot ul a:hover {
-  color: var(--accent);
-}
-.foot-col {
-  min-width: 160px;
-}
-
-.credit {
-  border-bottom: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--ink-3);
-  font-size: 13px;
-}
-.credit:hover {
-  color: var(--ink-2);
-}
-.studio-credit-mark {
-  width: 80px;
-  height: 20px;
-  object-fit: contain;
-  display: block;
-}
-/* ⛔ THE RETIRED SWIRL DOES NOT STOP PAINTING BY ITSELF. Most of the estate's globals.css
- * paints /brand/compound-studios.svg on ANY footer anchor pointing at thecompound.tech, keyed on
- * the href rather than on a class, so a correct credit anchor still matches it. This tree has
- * no such rule of its own, and the kill is declared anyway at the (0,2,4) specificity the house
- * rule needs, so that a later sheet cannot reintroduce it. `content: none`, not just
- * background-image, because an empty content still generates a box that reads as a failed asset. */
-html body footer a.credit[href]::before,
-html body a.credit[href]::before {
-  content: none !important;
-  background-image: none !important;
-}
-
-.foot-line > .in {
-  padding-top: 14px;
-  padding-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  justify-content: space-between;
-  font-size: 12.5px;
-  color: var(--ink-3);
-}
-.foot-line a {
-  color: var(--ink-3);
-  border-bottom-color: var(--line-2);
-}
-.foot-line a:hover {
-  color: var(--accent);
-}
-
-/* ── phone ─────────────────────────────────────────────────────────────────────────────
- * The margin note is a second column on a desktop and a block under the prose on a phone. It
- * never becomes a squeezed rail, because a 13.5px note in a 120px column is unreadable. */
-@media (max-width: 900px) {
-  .sec > .in,
-  .gate-body {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .sec .note,
-  .gate-why {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-    padding-left: 0;
-    padding-top: 14px;
-  }
-  .mast-standing {
-    display: none;
-  }
-}
-
 @media (max-width: 640px) {
-  h1 {
-    font-size: 29px;
-    max-width: none;
-  }
-  h2 {
-    font-size: 19px;
-  }
-  .head > .in {
-    padding-top: 44px;
-    padding-bottom: 36px;
-  }
-  .refuse li {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-  }
-  /* ⛔ THE THREE SECTION LINKS GO, THEY DO NOT SHRINK. The first cut hid their labels and left
-   * three 14x14 icons 18px apart, which mobile-shape flagged under WCAG 2.5.8 and which is
-   * unreadable besides. They are a table of contents for one page, and the footer already
-   * carries that list at full size, so on a phone the masthead keeps only the two links that
-   * leave the site. */
-  .mast-nav {
-    gap: 14px;
-  }
-  .mast-nav a[href^='#'] {
-    display: none;
-  }
+  :root { --pad: 15px; }
+  body { font-size: 14.5px; }
+  h1 { font-size: 24px; max-width: none; }
+  .bar-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  /* The masthead keeps the mark, the switch and the one action on its first line and puts the
+     three destinations on their own line under them, rather than squeezing five things into
+     390px. */
+  .mast .in { flex-wrap: wrap; row-gap: 10px; }
+  .mast-lock { flex: 1 1 auto; }
+  .mast-nav { order: 3; flex: 1 0 100%; overflow-x: auto; scrollbar-width: none; }
+  .mast-nav a { padding: 6px 9px; }
+  .apps-row { grid-template-columns: minmax(0, 1fr); }
+  .apps-lab { padding: 10px 0 0; margin: 0; border-right: 0; }
+  /* Below this the grid and the ledger keep a readable column set and scroll inside their own
+     wrapper, rather than collapsing every column to a few characters each. */
+  table.grid { min-width: 620px; }
+  table.led { min-width: 460px; }
+  .foot .in { grid-template-columns: minmax(0, 1fr); }
+  .foot-line .in { justify-content: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+  * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
 }

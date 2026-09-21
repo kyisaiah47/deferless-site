@@ -11,10 +11,12 @@
     "capture": "node scripts/capture.mjs",
     "icons": "node scripts/icons.mjs",
     "shoot": "node scripts/shoot.mjs",
+    "layout-gate": "node scripts/layout-gate.mjs",
     "build:cf": "opennextjs-cloudflare build",
     "deploy:cf": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && opennextjs-cloudflare populateCache remote && node scripts/verify-cf.mjs https://deferless-site.kyisaiah47.workers.dev"
   },
   "dependencies": {
+    "@number-flow/react": "^0.6.2",
     "lenis": "^1.3.26",
     "next": "16.3.5",
     "react": "19.2.8",

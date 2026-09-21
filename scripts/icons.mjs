@@ -32,6 +32,13 @@ const WANT = [
   'warning-circle', // the honest limitations
   'lightning', // the run line
   'arrow-square-out', // an outward link
+  'caret-up-down', // the app switch beside the mark
+  'caret-right', // a row that opens
+  'table', // the check kind grid
+  'check', // a clause that holds
+  'x', // a clause that refuses
+  'clock', // a read date
+  'info', // a note in a rail
 ];
 
 await mkdir(OUT, { recursive: true });
