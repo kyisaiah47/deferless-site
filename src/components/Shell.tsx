@@ -121,7 +121,7 @@ export function Footer({ readAt }: { readAt: string }) {
           >
             Built by
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={80} height={20} />
+            <img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={20} height={20} />
           </a>
           {/* LAYER 3. The copyright line names the studio in live text, so the page still
               carries the name for a reader who loads no images. */}

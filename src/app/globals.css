@@ -442,8 +442,8 @@ table.led a { color: var(--ink-2); }
    readable copy. Both dimensions are declared so the bar does not reflow while it loads. */
 .credit { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-3); text-decoration: none; }
 .credit:hover { color: var(--ink-2); }
-.studio-credit-mark { display: block; width: 80px; height: 20px; opacity: 0.8; }
-.credit:hover .studio-credit-mark { opacity: 1; }
+.studio-credit-mark { display: block; width: 20px; height: 20px; opacity: 0.8; }
+@media (hover: hover) and (pointer: fine) {.credit:hover .studio-credit-mark {opacity: 1;}}
 
 .ico { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; flex: none; }
 
