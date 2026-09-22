@@ -13,6 +13,6 @@
     { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "deferless-site-isr" }
   ],
   "routes": [
-    { "pattern": "deferless.thecompound.tech", "custom_domain": true }
+    { "pattern": "deferless.thecompound.tech/*", "custom_domain": true }
   ]
 }
