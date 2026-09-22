@@ -4,6 +4,8 @@ import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import { PRODUCT } from '@/lib/product';
 
+export const runtime = 'edge';
+
 /* A mono for everything a machine wrote. The sentence face is BDO Grotesk, declared as a
  * @font-face in globals.css off public/fonts, so the page's own words never wait on a CDN. */
 const mono = IBM_Plex_Mono({
