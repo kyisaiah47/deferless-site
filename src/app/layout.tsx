@@ -15,13 +15,25 @@ const mono = IBM_Plex_Mono({
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || `https://${PRODUCT.host}`;
 
+// `${name}: ${headline}` ran 69 chars, past Google's ~60-char truncation. The H1 (which reuses
+// PRODUCT.headline directly) keeps the full sentence; the <title> cuts at the last word boundary.
+const TITLE_LIMIT = 60;
+function pageTitle(name: string, headline: string): string {
+  const full = `${name}: ${headline}`;
+  if (full.length <= TITLE_LIMIT) return full;
+  const cut = full.slice(0, TITLE_LIMIT);
+  const boundary = cut.lastIndexOf(' ');
+  return (boundary > 30 ? cut.slice(0, boundary) : cut).replace(/[.,:;]+$/, '');
+}
+const TITLE = pageTitle(PRODUCT.name, PRODUCT.headline);
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: `${PRODUCT.name}: ${PRODUCT.headline}`, template: `%s · ${PRODUCT.name}` },
+  title: { default: TITLE, template: `%s · ${PRODUCT.name}` },
   description: PRODUCT.blurb,
   alternates: { canonical: SITE },
   openGraph: {
-    title: `${PRODUCT.name}: ${PRODUCT.headline}`,
+    title: TITLE,
     description: PRODUCT.blurb,
     url: SITE,
     siteName: PRODUCT.name,
