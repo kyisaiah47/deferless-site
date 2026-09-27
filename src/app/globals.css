@@ -317,7 +317,7 @@ header[data-apps='open'] .apps { grid-template-rows: 1fr; visibility: visible; t
 .band-head .eyebrow { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
 .band-head h2 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.012em; }
 .band-head .n { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-left: auto; }
-.band > p { margin: 0 0 16px; color: var(--ink-2); max-width: 74ch; }
+.band > p { margin: 0 0 16px; color: var(--ink-2); }
 
 h1 { font-size: 30px; line-height: 1.22; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 12px; max-width: 30ch; }
 h3 { font-size: 15px; font-weight: 600; margin: 0 0 6px; }
