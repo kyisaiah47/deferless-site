@@ -1,9 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="deferless">
-  <!-- THE MARK IS THE GATE. Output travels down the column and meets a bar that does not lift.
-       The bar is solid and full width: a gap in it would be the allowlist this package does not
-       have. Accent #33C9C4, derived in src/app/globals.css. -->
-  <rect width="32" height="32" rx="7" fill="#101314"/>
-  <path d="M16 6v11" stroke="#33C9C4" stroke-width="2.4" stroke-linecap="square"/>
-  <path d="M11.5 13.5 16 18l4.5-4.5" fill="none" stroke="#33C9C4" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
-  <rect x="6" y="21.6" width="20" height="2.8" rx="0.4" fill="#33C9C4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+  <g transform="translate(2.5 2.5) scale(0.84375)"><rect x="5" y="4" width="6" height="25" fill="#33c9c4" fill-opacity="0.62"></rect><rect x="21" y="4" width="6" height="25" fill="#33c9c4" fill-opacity="0.62"></rect><rect x="1" y="11" width="30" height="7" fill="#33c9c4"></rect></g>
 </svg>

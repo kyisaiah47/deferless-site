@@ -41,7 +41,7 @@ export function Masthead({ here }: { here: string }) {
         <div className="mast-lock">
           <Link className="mast-id" href="/">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="mk" src="/mark.svg" alt="" width={24} height={24} />
+            <img className="mk" src="/icon.svg" alt="" width={24} height={24} />
             <strong>{PRODUCT.name}</strong>
           </Link>
           <AppSwitch />

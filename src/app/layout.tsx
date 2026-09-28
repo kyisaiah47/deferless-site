@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: { card: 'summary_large_image', title: PRODUCT.name, description: PRODUCT.blurb },
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/icon.svg' },
   robots: { index: true, follow: true },
 };
 
