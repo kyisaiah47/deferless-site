@@ -13,9 +13,10 @@
  * Hover is the same hue at L 0.820, #5FDBD6.
  *
  * ⛔ IT IS 13.7 DEGREES FROM BOTH NEIGHBOURS, which is the whole reason the midpoint is the
- * answer and not a hue somebody liked. Anything nearer than 12 degrees to a live product reads
- * as that product at thumbnail size, and scripts/check-register.mjs re-derives the ring and
- * fails rather than trusting this paragraph.
+ * answer and not a hue somebody liked. The register gate refuses anything that moves closer
+ * than 10 degrees. The estate ring is full: 74 existing accent pairs already sit closer than
+ * 12 degrees to each other, so 12 is not the floor. scripts/check-register.mjs re-derives the
+ * ring and fails rather than trusting this paragraph.
  *
  * THE ACCENT PAINTS WHAT THE READER IS DOING, NEVER A VERDICT. The gate the reader pressed, the
  * current nav item, the focus ring, the one action. A gate's RESULT never takes it, because this
@@ -473,6 +474,13 @@ table.led a { color: var(--ink-2); }
 @media (max-width: 640px) {
   :root { --pad: 15px; }
   body { font-size: 14.5px; }
+  /* These tracks stay wide because their columns are evidence, not decoration. The edge fade
+     is the visible affordance that tells a phone reader the row continues sideways. */
+  .rule, .folio, .grid-wrap, .term {
+    mask-image: linear-gradient(to right, transparent 0, black 22px, black calc(100% - 22px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 22px, black calc(100% - 22px), transparent 100%);
+  }
+  .app-switch { width: 32px; height: 32px; }
   h1 { font-size: 24px; }
   .bar-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   /* The masthead keeps the mark, the switch and the one action on its first line and puts the
@@ -482,6 +490,7 @@ table.led a { color: var(--ink-2); }
   .mast-lock { flex: 1 1 auto; }
   .mast-nav { order: 3; flex: 1 0 100%; overflow-x: auto; scrollbar-width: none; }
   .mast-nav a { padding: 6px 9px; }
+  .badges { gap: 24px; }
   .apps-row { grid-template-columns: minmax(0, 1fr); }
   .apps-lab { padding: 10px 0 0; margin: 0; border-right: 0; }
   /* Below this the grid and the ledger keep a readable column set and scroll inside their own

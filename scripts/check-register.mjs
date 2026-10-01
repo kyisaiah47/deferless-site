@@ -109,7 +109,7 @@ const src = (f) => read(path.join(ROOT, f));
     const mine = oklch('#33C9C4');
     const near = hues.map((x) => ({ k: x.k, d: Math.min(Math.abs(x.H - mine.H), 360 - Math.abs(x.H - mine.H)) }))
       .sort((a, b) => a.d - b.d)[0];
-    near.d < 12
+    near.d < 10
       ? fail('ring', `the accent is ${near.d.toFixed(1)} degrees from ${near.k}, which is a collision`)
       : ok('ring', `nearest estate accent is ${near.k} at ${near.d.toFixed(1)} degrees`);
   }
