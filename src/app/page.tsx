@@ -24,8 +24,7 @@ export default function Page() {
               <p className="badges">
                 {BADGES.map((b) => (
                   <a key={b.id} href={b.href} rel="noopener" title={b.say}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={b.src} alt={b.alt} height={20} loading="lazy" fetchPriority="low" />
+                    <span className="badge">{b.alt}</span>
                   </a>
                 ))}
               </p>

@@ -423,9 +423,11 @@ table.led a { color: var(--ink-2); }
 }
 .spec { margin: 0; border: 1px solid var(--line); background: var(--panel); padding: 14px 16px; overflow-x: auto; white-space: pre; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: var(--ink-2); }
 
-/* THE BADGES the README carries. Live third party reads, drawn at their own height in a row. */
+/* THE BADGES the README carries. They remain links to the live sources, but their labels are
+   local so a third party shield cannot hold the page open while the layout gate waits to settle. */
 .badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0; }
-.badges img { height: 20px; width: auto; display: block; }
+.badge { display: inline-block; padding: 2px 6px; border: 1px solid var(--line-2); color: var(--ink-3); font-family: var(--mono); font-size: 10px; line-height: 15px; white-space: nowrap; }
+.badges a:hover .badge { color: var(--ink); border-color: var(--accent-line); }
 
 /* FOOTER */
 .foot { border-top: 1px solid var(--line); background: var(--panel); margin-top: 20px; }
