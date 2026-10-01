@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AppSwitch from './AppSwitch';
 import AppStrip from './AppStrip';
 import { Icon } from './Icon';
+import ViewControls from './site-view/ViewControls';
 import { PRODUCT, READS, READ_ON } from '@/lib/product';
 
 /* THE TOP RULE, THE MASTHEAD AND THE FOOTER.
@@ -127,6 +128,12 @@ export function Footer({ readAt }: { readAt: string }) {
               carries the name for a reader who loads no images. */}
           <span>{'©'} {year} {PRODUCT.name}. A Compound Labs product.</span>
           <span>Every sentence on this page was read {readAt}.</span>
+        </div>
+      </div>
+      {/* Both views and Start here, at the foot of every Console route. */}
+      <div className="strip sv-tools-strip">
+        <div className="in">
+          <ViewControls />
         </div>
       </div>
     </>
