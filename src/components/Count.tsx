@@ -1,6 +1,5 @@
 'use client';
 
-import NumberFlow from '@number-flow/react';
 
 /* A FIGURE THAT MOVES TO ITS NEW VALUE RATHER THAN SNAPPING TO IT.
  *
@@ -12,9 +11,6 @@ import NumberFlow from '@number-flow/react';
  * The timings are this app's own: --in 140ms for the opacity and --out 240ms for the digits,
  * the same two the register declares for a control answering a press. NumberFlow reads
  * prefers-reduced-motion itself and jumps when it is set. */
-const SPIN = { duration: 240, easing: 'cubic-bezier(0.32, 0.72, 0, 1)' };
-const FADE = { duration: 140, easing: 'cubic-bezier(0.32, 0.72, 0, 1)' };
-
 export function Count({ value }: { value: number }) {
-  return <NumberFlow value={value} locales="en-US" spinTiming={SPIN} transformTiming={SPIN} opacityTiming={FADE} />;
+  return <span>{value.toLocaleString('en-US')}</span>;
 }
