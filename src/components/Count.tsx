@@ -1,6 +1,3 @@
-'use client';
-
-
 /* A FIGURE THAT MOVES TO ITS NEW VALUE RATHER THAN SNAPPING TO IT.
  *
  * Used only where the figure genuinely changes under a control the reader pressed. Pressing a
