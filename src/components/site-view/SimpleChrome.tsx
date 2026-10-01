@@ -7,7 +7,6 @@ import ViewControls from './ViewControls';
 
 const NAV = [
   { href: '/#try', label: 'Try it' },
-  { href: '/#gates', label: 'The gates' },
   { href: '/kinds', label: 'Every check' },
   { href: '/method', label: 'How it works' },
 ];

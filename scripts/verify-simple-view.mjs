@@ -103,27 +103,6 @@ const DESKTOP = { width: 1440, height: 900 };
   check(clip === 'npx deferless demo', 'Copy puts the command on the clipboard');
   await shot(page, 'simple-home');
 
-  /* the workbench: the Console's gate picker, filters, search and exit panel, working */
-  const rowsNow = () => page.locator('.sv-bench-rows li').count();
-  check(await rowsNow() === 14, 'workbench opens on deferless check with 14 check kinds');
-  await page.locator('.sv-bench-filter button', { hasText: 'ffmpeg pixels' }).click();
-  check(await rowsNow() === 8, 'the pixel filter narrows to 8 kinds');
-  await page.locator('.sv-bench-filter button', { hasText: 'All' }).click();
-  await page.locator('.sv-bench-search input').fill('glob');
-  const globRows = await rowsNow();
-  check(globRows > 0 && globRows < 14, `search for glob narrows to ${globRows}`);
-  await page.locator('.sv-bench-search input').fill('zzzz');
-  check(await page.locator('.sv-bench-empty').count() === 1, 'a search with no match says so and offers a reset');
-  await page.locator('.sv-bench-empty button').click();
-  check(await rowsNow() === 14, 'reset shows every kind again');
-  await page.locator('.sv-bench-gates button', { hasText: 'deferless render' }).click();
-  check(await rowsNow() === 7, 'picking render shows its 7 questions');
-  const off = await page.locator('.sv-bench-exits li[data-off="true"]').count();
-  check(off === 1, 'render cannot return exit 3, and the panel says so');
-  await page.locator('.sv-bench-gates button', { hasText: 'deferless check' }).click();
-  await page.locator('#gates').scrollIntoViewIfNeeded();
-  await shot(page, 'simple-workflow-1440');
-
   const dis = page.locator('.sv-result .sv-disclosure > button', { hasText: 'broken sentences' });
   await dis.click();
   await page.waitForTimeout(400);

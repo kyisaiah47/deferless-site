@@ -72,37 +72,3 @@ Simple home as disclosures.
   `npx deferless demo` from the copy button.
 
 Screens: `compound-ops/standards/simple-view-ref/review/deferless-site-{welcome,simple-home,simple-example-open,simple-kinds,simple-method,console-home}.png`.
-
-## Revision 2, 2026-10-01: the Console workflow on the Simple home
-
-Isaiah said the first Simple home was too bare. The Console home's working tools are:
-- the gate picker;
-- each gate's clause table;
-- the exit codes the gate can return;
-- the rails the answers come from;
-- the command to run it;
-- the incident the gate was built against;
-- the captured demo output.
-
-Section 02 of the Simple home now carries all of them as working controls over the same
-`GATES` and `EXITS` data:
-- four gate buttons;
-- a filter by where the answer comes from, shown only when a gate has more than one source;
-- a search over clause names and text, with an empty state and a reset;
-- a readable row per clause;
-- an exit panel that dims codes the gate cannot return;
-- a copy button for the gate's command;
-- the incident behind a disclosure.
-
-The captured demo output stays in section 03. The separate "More gates" section and the
-duplicate exit list are gone, because the workbench covers both.
-
-Checks after the change:
-- register gate: 20 held, 0 refused;
-- verify-simple-view: 37 held, 0 refused, with 7 new workbench checks;
-- mobile-gate: 10 held, 0 refused;
-- contrast: 0 findings;
-- build: 11 pages;
-- no native select anywhere in src.
-
-Screen: `deferless-site-simple-workflow-1440.png`.
