@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Rule, Masthead, Footer } from '@/components/Shell';
+import PageViews from '@/components/site-view/PageViews';
+import { SimpleMethod } from '@/components/site-view/SimplePages';
 import { Folio } from '@/components/Folio';
 import { Icon } from '@/components/Icon';
 import {
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
  * scripts/check-register.mjs refuses one. */
 export default function Page() {
   return (
-    <>
+    <PageViews simpleView={<SimpleMethod />} consoleView={<>
       <Rule />
       <Masthead here="/method" />
       <Folio
@@ -253,6 +255,6 @@ export default function Page() {
         </aside>
       </div>
       <Footer readAt={READ_ON} />
-    </>
+    </>} />
   );
 }

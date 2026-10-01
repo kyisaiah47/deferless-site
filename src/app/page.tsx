@@ -1,12 +1,14 @@
 import { Rule, Masthead, Footer } from '@/components/Shell';
 import { Console } from '@/components/Console';
 import { PRODUCT, BADGES, READ_ON } from '@/lib/product';
+import PageViews from '@/components/site-view/PageViews';
+import SimpleHome from '@/components/site-view/SimpleHome';
 
 /* THE CONSOLE PAGE. The order is the dev apps' own: the read, the masthead, what this page
  * holds, the claim beside its evidence, the one control, then rail, track, rail. */
 export default function Page() {
   return (
-    <>
+    <PageViews simpleView={<SimpleHome />} consoleView={<>
       <Rule />
       <Masthead here="/" />
       <Console>
@@ -51,6 +53,6 @@ export default function Page() {
         </div>
       </Console>
       <Footer readAt={READ_ON} />
-    </>
+    </>} />
   );
 }

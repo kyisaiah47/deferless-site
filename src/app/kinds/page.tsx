@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Rule, Masthead, Footer } from '@/components/Shell';
+import PageViews from '@/components/site-view/PageViews';
+import { SimpleKinds } from '@/components/site-view/SimplePages';
 import { Folio } from '@/components/Folio';
 import { Icon } from '@/components/Icon';
 import { GATES, CHECK_KINDS, RENDER_QUESTIONS, EXITS } from '@/lib/product';
@@ -18,7 +20,7 @@ const ALL = GATES.flatMap((g) => g.clauses);
  * whether a plan of theirs is expressible. */
 export default function Page() {
   return (
-    <>
+    <PageViews simpleView={<SimpleKinds />} consoleView={<>
       <Rule />
       <Masthead here="/kinds" />
       <Folio
@@ -128,6 +130,6 @@ export default function Page() {
         </main>
       </div>
       <Footer readAt={READ_ON} />
-    </>
+    </>} />
   );
 }
