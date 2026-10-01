@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
+import SiteView from '@/components/site-view/SiteView';
 import { PRODUCT } from '@/lib/product';
 
 /* A mono for everything a machine wrote. The sentence face is BDO Grotesk, declared as a
@@ -79,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* The masthead and the footer are drawn by each PAGE rather than here, because both
             carry page state: the masthead marks the current destination and the footer states
             the day this page's content was read. A layout cannot know either. */}
-        {children}
+        <SiteView>{children}</SiteView>
       </body>
     </html>
   );

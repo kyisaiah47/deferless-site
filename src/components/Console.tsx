@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useSiteView } from './site-view/SiteView';
+import SimpleGate from './site-view/SimpleGate';
 import { Folio } from './Folio';
 import { Icon } from './Icon';
 import { Terminal } from './Terminal';
@@ -19,7 +20,7 @@ import { GATES, EXITS, REFUSALS, PRODUCT } from '@/lib/product';
  * control moves. Drawn from the page, the folio would be static markup above a control it can
  * no longer answer. */
 export function Console({ children }: { children: React.ReactNode }) {
-  const [id, setId] = useState(GATES[0].id);
+  const { view, gateId: id, setGateId: setId } = useSiteView();
   const gate = GATES.find((g) => g.id === id) || GATES[0];
 
   const kinds = gate.clauses.length;
@@ -28,6 +29,8 @@ export function Console({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      {view === 'simple' ? <SimpleGate id={id} choose={setId} /> : null}
+      <div hidden={view === 'simple'}>
       <Folio
         cells={[
           { k: `${gate.unit}s this gate runs`, n: kinds },
@@ -227,6 +230,7 @@ export function Console({ children }: { children: React.ReactNode }) {
             <div className="rail-row"><span className="t"><Icon name="stack-simple" className="" />the package</span><span><a href={PRODUCT.npm} rel="noopener">npm</a></span></div>
           </section>
         </aside>
+      </div>
       </div>
     </>
   );

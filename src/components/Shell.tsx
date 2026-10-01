@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AppSwitch from './AppSwitch';
 import AppStrip from './AppStrip';
 import { Icon } from './Icon';
+import { ViewControls } from './site-view/SiteView';
 import { PRODUCT, READS, READ_ON } from '@/lib/product';
 
 /* THE TOP RULE, THE MASTHEAD AND THE FOOTER.
@@ -109,6 +110,7 @@ export function Footer({ readAt }: { readAt: string }) {
           </div>
         </div>
       </footer>
+      <ViewControls />
       <div className="strip foot-line">
         <div className="in">
           {/* LAYER 2 OF THE STUDIO CREDIT. "Built by" is live text and the studio's name is
