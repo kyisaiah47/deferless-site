@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   description: PRODUCT.blurb,
   alternates: { canonical: SITE },
   openGraph: {
-    title: TITLE,
-    description: PRODUCT.blurb,
+    title: `${PRODUCT.name} — Fail-closed gates for an AI agent's work`,
+    description: `Fourteen check kinds, run before the deploy instead of after. ${PRODUCT.blurb}`,
     url: SITE,
     siteName: PRODUCT.name,
     type: 'website',
