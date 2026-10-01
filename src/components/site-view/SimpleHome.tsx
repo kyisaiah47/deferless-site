@@ -7,12 +7,12 @@ import { DEMO_VERSION } from '@/lib/demo';
 import { SimpleHeader, SimpleFooter } from './SimpleChrome';
 import Disclosure from './Disclosure';
 import CopyCommand from './CopyCommand';
+import SimpleWorkbench from './SimpleWorkbench';
 import { PASSED, BROKEN, VIOLATIONS, FAILING_EXIT, PASSING_EXIT } from './demo-read';
 
 /* The README's Install section, verbatim: `npm i -D deferless   # in a project`. */
 const INSTALL = 'npm i -D deferless';
 const CHECK = GATES[0];
-const MORE = GATES.slice(1);
 
 /* THE SIMPLE HOME. Outcome, the one action, the readable example, optional detail, next step.
  * Every figure is read off product.ts or the captured demo. */
@@ -45,10 +45,21 @@ export default function SimpleHome() {
             </div>
           </section>
 
+          <section className="sv-section" id="gates" aria-labelledby="sv-gates">
+            <div className="sv-section-intro">
+              <div>
+                <span className="sv-label">02 / THE GATES</span>
+                <h2 id="sv-gates">Pick a gate and read what it refuses.</h2>
+              </div>
+              <p>Each check below is one thing the gate stops. Narrow the list by where the answer comes from, or search for a word.</p>
+            </div>
+            <SimpleWorkbench />
+          </section>
+
           <section className="sv-section" aria-labelledby="sv-see">
             <div className="sv-section-intro">
               <div>
-                <span className="sv-label">02 / WHAT YOU&apos;LL SEE</span>
+                <span className="sv-label">03 / WHAT YOU&apos;LL SEE</span>
                 <h2 id="sv-see">A failure you can read.</h2>
               </div>
               <p>Each failure quotes the sentence of the plan it broke. Open the list when you want the details.</p>
@@ -83,7 +94,7 @@ export default function SimpleHome() {
           <section className="sv-section" aria-labelledby="sv-use">
             <div className="sv-section-intro">
               <div>
-                <span className="sv-label">03 / USE IT ON YOUR PLAN</span>
+                <span className="sv-label">04 / USE IT ON YOUR PLAN</span>
                 <h2 id="sv-use">Turn your plan into checks.</h2>
               </div>
               <p>You write the checks by hand. Each check holds one sentence of your plan, word for word.</p>
@@ -110,38 +121,8 @@ export default function SimpleHome() {
                 <p>The exit code tells your pipeline whether the work may ship.</p>
               </li>
             </ol>
-            <div className="sv-exits">
-              <h3>What each exit code means</h3>
-              <ul>
-                {EXITS.map((e) => (
-                  <li key={e.code}>
-                    <span className="st" data-ink={e.ink}><b>{e.code}</b></span>
-                    <p><strong>{e.name[0].toUpperCase() + e.name.slice(1)}.</strong> {e.say}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </section>
 
-          <section className="sv-section" aria-labelledby="sv-more">
-            <div className="sv-section-intro">
-              <div>
-                <span className="sv-label">04 / MORE GATES</span>
-                <h2 id="sv-more">Three more gates in the same package.</h2>
-              </div>
-              <p>Each gate runs before the work ships. None of them has a force flag.</p>
-            </div>
-            <div className="sv-gates">
-              {MORE.map((g) => (
-                <article className="sv-card" key={g.id}>
-                  <code className="sv-gate-cmd">{g.cmd}</code>
-                  <h3>{g.title}</h3>
-                  <p>{g.what}</p>
-                  <Link href={`/kinds#${g.id}`}>See its {g.clauses.length} {g.unit}s <span aria-hidden="true">{'↗'}</span></Link>
-                </article>
-              ))}
-            </div>
-          </section>
 
           <section className="sv-section" aria-labelledby="sv-questions">
             <div className="sv-section-intro">
