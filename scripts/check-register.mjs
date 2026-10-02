@@ -69,7 +69,10 @@ const src = (f) => read(path.join(ROOT, f));
 {
   const css = src('src/app/globals.css');
   const decl = FILES.filter((f) => /#33c9c4/i.test(read(f))).map(rel).sort();
-  const expect = ['src/app/globals.css', 'src/app/icon.svg', 'src/lib/product.ts',
+  /* src/icons/mark.generated.ts is written by compound-ops/brand/app-icons/sync.mjs from the
+   * logo registry, and compound-ops/tools/gates/one-logo-per-app.mjs fails the sweep without it.
+   * The mark is drawn in the accent, so the module is one of the accent's homes. */
+  const expect = ['src/app/globals.css', 'src/app/icon.svg', 'src/icons/mark.generated.ts', 'src/lib/product.ts',
     'public/favicon.svg', 'public/mark.svg', 'README.md'].sort();
   const extra = decl.filter((d) => !expect.includes(d));
   if (extra.length) fail('accent', `the accent hex appears outside its declared homes: ${extra.join(', ')}`);
