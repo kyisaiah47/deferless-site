@@ -26,7 +26,7 @@ export function GET() {
     '',
     ...REFUSALS.map((r) => `- ${r.name}: ${r.say}`),
     '',
-    'One rule governs every patch: nothing may be added that lets a known failure ship.',
+    'Every patch must preserve the rule that no known failure ships.',
     '',
     '## The four gates',
     '',

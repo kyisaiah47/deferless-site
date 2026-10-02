@@ -25,7 +25,7 @@ export default function SimpleHome() {
           <section className="sv-hero">
             <div className="sv-pitch">
               <span className="sv-label">FOR WORK AN AI AGENT DID</span>
-              <h1>Stop agent work that breaks your plan.</h1>
+              <h1>deferless stops agent work that breaks your plan.</h1>
               <p>
                 You approve a plan, and an agent does the work. deferless checks the finished
                 output against the plan&apos;s own sentences. A broken sentence stops the work
@@ -39,9 +39,9 @@ export default function SimpleHome() {
             <div className="sv-card sv-action" id="try">
               <div className="sv-step"><span>01 / TRY IT FIRST</span><span>NO INSTALL</span></div>
               <h2>Run the demo in your terminal.</h2>
-              <p>The demo checks two folders of API docs against one approved plan and prints both results.</p>
+              <p>The demo checks two folders of API documentation against one approved plan and prints both results.</p>
               <CopyCommand command={PRODUCT.install} label="Command" />
-              <p className="sv-terms">No account. Runs on your machine. {PRODUCT.licence} licence.</p>
+              <p className="sv-terms">The demo needs no account. It runs on your machine. It uses the {PRODUCT.licence} licence.</p>
             </div>
           </section>
 
@@ -51,15 +51,14 @@ export default function SimpleHome() {
                 <span className="sv-label">02 / WHAT YOU&apos;LL SEE</span>
                 <h2 id="sv-see">A failure you can read.</h2>
               </div>
-              <p>Each failure quotes the sentence of the plan it broke. Open the list when you want the details.</p>
+              <p>Each failure quotes the plan sentence it broke. Open the list to read the details.</p>
             </div>
 
             <div className="sv-card sv-result">
               <div className="sv-step"><span>EXAMPLE RESULT</span><span>Captured from deferless {DEMO_VERSION}</span></div>
-              <h3>The agent&apos;s work broke {BROKEN} sentences of the approved plan, so nothing ships.</h3>
+              <h3>The agent&apos;s work breaks {BROKEN} sentences in the approved plan, so the output does not ship.</h3>
               <p>
-                The same plan passed the correct folder with {PASSED} of {PASSED} checks. The
-                correct folder exits {PASSING_EXIT}. The agent&apos;s folder exits {FAILING_EXIT}.
+                The same plan passes the correct folder with {PASSED} of {PASSED} checks. The correct folder exits {PASSING_EXIT}. The agent&apos;s folder exits {FAILING_EXIT}.
               </p>
               <Disclosure title={`See the ${VIOLATIONS.length} broken sentences`}>
                 <ol className="sv-violations">
@@ -75,7 +74,7 @@ export default function SimpleHome() {
                 <Terminal />
               </Disclosure>
               <p className="sv-note">
-                This is the package&apos;s own demo, captured from its output. It is not a check of your work.
+                This package&apos;s demo captures its own output. It does not check your work.
               </p>
             </div>
           </section>
@@ -84,14 +83,14 @@ export default function SimpleHome() {
             <div className="sv-section-intro">
               <div>
                 <span className="sv-label">03 / USE IT ON YOUR PLAN</span>
-                <h2 id="sv-use">Turn your plan into checks.</h2>
+                <h2 id="sv-use">Write checks from your plan.</h2>
               </div>
               <p>You write the checks by hand. Each check holds one sentence of your plan, word for word.</p>
             </div>
             <ol className="sv-steps">
               <li className="sv-card">
                 <span className="sv-step-n">1</span>
-                <h3>Install it in your project.</h3>
+                <h3>Install deferless in your project.</h3>
                 <pre className="cmd" tabIndex={0}>{INSTALL}</pre>
                 <p>{PRODUCT.node}. {PRODUCT.deps}.</p>
               </li>
@@ -105,7 +104,7 @@ export default function SimpleHome() {
               </li>
               <li className="sv-card">
                 <span className="sv-step-n">3</span>
-                <h3>Run it on the output.</h3>
+                <h3>Run the checks on the output.</h3>
                 <pre className="cmd" tabIndex={0}>{CHECK.usage}</pre>
                 <p>The exit code tells your pipeline whether the work may ship.</p>
               </li>
@@ -127,9 +126,9 @@ export default function SimpleHome() {
             <div className="sv-section-intro">
               <div>
                 <span className="sv-label">04 / MORE GATES</span>
-                <h2 id="sv-more">Three more gates in the same package.</h2>
+                <h2 id="sv-more">The package includes three more gates.</h2>
               </div>
-              <p>Each gate runs before the work ships. None of them has a force flag.</p>
+              <p>Each gate runs before the work ships. No gate has a force flag.</p>
             </div>
             <div className="sv-gates">
               {MORE.map((g) => (
@@ -147,12 +146,12 @@ export default function SimpleHome() {
             <div className="sv-section-intro">
               <div>
                 <span className="sv-label">05 / QUESTIONS</span>
-                <h2 id="sv-questions">A few useful answers.</h2>
+                <h2 id="sv-questions">Answers about deferless.</h2>
               </div>
-              <p>Read these before you write your first spec.</p>
+              <p>Read these answers before you write your first spec.</p>
             </div>
             <Disclosure title="Can I skip a check that fails?">
-              <p>No. These four things do not exist in deferless:</p>
+              <p>deferless has none of these four things:</p>
               <ul className="sv-plain">
                 {REFUSALS.map((r) => (
                   <li key={r.id}><strong>{r.name[0].toUpperCase() + r.name.slice(1)}.</strong> {r.say}</li>
@@ -161,7 +160,7 @@ export default function SimpleHome() {
             </Disclosure>
             <Disclosure title="Why does exit code 2 matter?">
               <p>{EXITS[2].say}</p>
-              <p>Could not check and checked and it was fine are different answers. A pipeline that shows both as green has stopped reading the gate.</p>
+              <p>A gate that could not run and a gate that checked the output successfully produce different answers. A pipeline that shows both as green has stopped reading the gate.</p>
             </Disclosure>
             <Disclosure title="What does deferless not do?">
               <ul className="sv-plain">

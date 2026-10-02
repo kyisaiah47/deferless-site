@@ -21,7 +21,7 @@ export default function CopyCommand({ command, label }: { command: string; label
       <label htmlFor={id}>{label}</label>
       <input id={id} className="sv-command" readOnly value={command} spellCheck={false} />
       <button type="button" className="sv-primary" onClick={copy}>
-        {state === 'copied' ? 'Copied. Paste it into a terminal.' : 'Copy the command'}
+        {state === 'copied' ? 'Copied. Paste the command into a terminal.' : 'Copy the command'}
       </button>
       <p className="sv-copy-status" role="status" aria-live="polite">
         {state === 'refused' ? 'This browser blocked the clipboard. Type the command above into a terminal.' : ''}

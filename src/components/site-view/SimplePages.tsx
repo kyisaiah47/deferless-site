@@ -47,15 +47,15 @@ export function SimpleKinds() {
   return (
     <SimplePage
       label="EVERY CHECK"
-      title="Every check the four gates run."
-      intro="A check is one thing a gate refuses, with what it reads to know. Pick a gate and open its list."
+      title="This list contains every check the four gates run."
+      intro="A check names one thing a gate refuses and what the gate reads. Pick a gate to open its list."
     >
       {GATES.map((g, i) => (
         <section className="sv-section" id={g.id} key={g.id} aria-labelledby={`sv-${g.id}`}>
           <Intro label={`GATE ${i + 1} / ${g.cmd.toUpperCase()}`} title={`${g.title}.`} id={`sv-${g.id}`}>{g.what}</Intro>
           <div className="sv-card sv-gate">
             <p className="sv-gate-line">
-              It runs {g.clauses.length} {g.unit}s and can exit {g.exits.join(', ')}.
+              The gate runs {g.clauses.length} {g.unit}s and can exit {g.exits.join(', ')}.
             </p>
             <pre className="cmd" tabIndex={0}>{g.usage}</pre>
             <Disclosure title={`See the ${g.clauses.length} ${g.unit}s`}>
@@ -82,7 +82,7 @@ export function SimpleKinds() {
                 </table>
               </div>
             </Disclosure>
-            <Disclosure title="The failure it was built against">
+            <Disclosure title="The failure this package was built to catch">
               <p>{g.incident}</p>
               <p>{g.measured}</p>
             </Disclosure>
@@ -105,7 +105,7 @@ export function SimpleMethod() {
     <SimplePage
       label="HOW IT WORKS"
       title="How a plan becomes a check."
-      intro="A rule stated in prose is checked by the same judgement that just broke it. So none of these gates ask. They exit non zero."
+      intro="A rule stated in prose is checked by the same judgement that broke it. These gates do not ask; they exit non zero."
     >
       <section className="sv-section" id="spec" aria-labelledby="sv-spec">
         <Intro label="01 / THE SPEC" title="Write one check per sentence." id="sv-spec">
@@ -120,7 +120,7 @@ export function SimpleMethod() {
 
       <section className="sv-section" id="exits" aria-labelledby="sv-exits">
         <Intro label="02 / EXIT CODES" title="What each exit code means." id="sv-exits">
-          2 is the one that matters. A gate that could not run never reports as a pass.
+          Exit code 2 matters because a gate that could not run never reports a pass.
         </Intro>
         <div className="sv-exits sv-exits--flush">
           <ul>
@@ -135,8 +135,8 @@ export function SimpleMethod() {
       </section>
 
       <section className="sv-section" id="census" aria-labelledby="sv-census">
-        <Intro label="03 / COUNTED" title="How often this happens." id="sv-census">
-          This is the one outside figure the site states. It carries a DOI so you can check it.
+        <Intro label="03 / COUNTED" title="This section shows how often the failure occurs." id="sv-census">
+          The site states this figure once, and the DOI lets you check it.
         </Intro>
         <div className="sv-card">
           <p className="sv-lead">{CENSUS.say}</p>
@@ -149,17 +149,17 @@ export function SimpleMethod() {
       </section>
 
       <section className="sv-section" id="limits" aria-labelledby="sv-limits">
-        <Intro label="04 / LIMITS" title="What these gates do not do." id="sv-limits">
-          The README puts these on its own front page, so this page carries them.
+        <Intro label="04 / LIMITS" title="These gates do not do the following." id="sv-limits">
+          The README lists these facts on its front page, and this page repeats them.
         </Intro>
         {LIMITS.map((l) => (
           <Disclosure key={l.id} title={l.head}><p>{l.say}</p></Disclosure>
         ))}
-        <Disclosure title="What is different from a policy gateway">
+        <Disclosure title="This section compares deferless with a policy gateway.">
           <p>{PRIOR_ART.before}</p>
           <p>{PRIOR_ART.after}</p>
         </Disclosure>
-        <Disclosure title="What does not exist">
+        <Disclosure title="These features do not exist.">
           <ul className="sv-plain">
             {REFUSALS.map((r) => (
               <li key={r.id}><strong>{r.name[0].toUpperCase() + r.name.slice(1)}.</strong> {r.say}</li>
@@ -169,8 +169,8 @@ export function SimpleMethod() {
       </section>
 
       <section className="sv-section" id="sources" aria-labelledby="sv-sources">
-        <Intro label="05 / SOURCES" title="Where every claim came from." id="sv-sources">
-          Each fact carries the file it was read from, a quote and the day it was read.
+        <Intro label="05 / SOURCES" title="This section lists where each claim came from." id="sv-sources">
+          Each fact names the file it came from, includes a quote, and records the day it was read.
         </Intro>
         <Disclosure title={`See all ${SOURCES.length} sources`}>
           <ul className="sv-sources">
@@ -197,7 +197,7 @@ export function SimpleMethod() {
 /* 404. Recovery links into the main journey. */
 export function SimpleNotFound() {
   return (
-    <SimplePage label="NOT FOUND" title="This page does not exist." intro="The address may be mistyped, or the page may have moved.">
+    <SimplePage label="NOT FOUND" title="This page does not exist." intro="The address may contain a typo, or the page may have moved.">
       <nav className="sv-next" aria-label="Where to go next">
         <Link href="/">Go to the home page <span aria-hidden="true">{'↗'}</span></Link>
         <Link href="/kinds">See every check <span aria-hidden="true">{'↗'}</span></Link>

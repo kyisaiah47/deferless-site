@@ -29,7 +29,7 @@ export const PRODUCT = {
   standing: 'NO FORCE FLAG, NO ALLOWLIST, NO KNOWN ISSUES FILE',
 
   blurb:
-    'A plan an AI agent cannot quietly deviate from, and findings it cannot defer to you. Fourteen check kinds, a promote gate that runs before the deploy instead of after it, a browser gate that measures painted pixels, and a deploy lock for a tree several agent sessions are editing at once.',
+    'An AI agent cannot quietly deviate from this plan or defer findings to you. The package has fourteen check kinds. The promote gate runs before the deploy. The browser gate measures painted pixels. The deploy lock covers a tree that several agent sessions edit at once.',
 
   version: '0.1.1',
   licence: 'MIT',
@@ -73,7 +73,7 @@ export const BADGES = [
     alt: 'gates',
     src: 'https://github.com/kyisaiah47/deferless/actions/workflows/ci.yml/badge.svg',
     href: 'https://github.com/kyisaiah47/deferless/actions/workflows/ci.yml',
-    say: 'The suite, under bash and zsh',
+    say: 'The suite runs under bash and zsh.',
   },
   {
     id: 'npm',
@@ -94,14 +94,14 @@ export const BADGES = [
     alt: 'dependencies: 0',
     src: 'https://img.shields.io/badge/dependencies-0-brightgreen.svg',
     href: 'https://github.com/kyisaiah47/deferless/blob/main/package.json',
-    say: 'Nothing to install but the package',
+    say: 'The package is the only installation required.',
   },
   {
     id: 'agents',
     alt: 'AGENTS.md score',
     src: 'https://toolproof.thecompound.tech/badge/rulestack/kyisaiah47/deferless.svg',
     href: 'https://rulestack.thecompound.tech',
-    say: 'A third party read of this repo AGENTS.md, re-read nightly',
+    say: 'A third party reads this repo\'s AGENTS.md every night.',
   },
 ] as const;
 
@@ -384,7 +384,7 @@ export const GATES: readonly Gate[] = [
     glyph: 'globe-hemisphere-west',
     what: 'Never reads a file. It takes a URL, drives a real browser, and asks the seven questions a screenshot answers and a grep cannot.',
     incident:
-      'Every other gate reads source, and all of them passed on the day a landing page shipped with an invisible hero. The h1 held its animation start frame at opacity 0.001, permanently. The element was in the DOM, at the right size, the right colour, the right position. There is no string to grep for that.',
+      'Every other gate reads source. All of them passed when a landing page shipped with an invisible hero. The h1 held its animation start frame at opacity 0.001 permanently. The element was in the DOM at the right size, colour, and position. No string identifies that defect.',
     unit: 'question',
     clauses: RENDER_QUESTIONS,
     exits: ['0', '1', '2'],
@@ -417,22 +417,22 @@ export const REFUSALS = [
   {
     id: 'force',
     name: 'a force flag',
-    say: 'Ships a known failure once, on the day somebody is in a hurry.',
+    say: 'The gate can ship a known failure once when somebody is in a hurry.',
   },
   {
     id: 'allowlist',
     name: 'an allowlist',
-    say: 'Ships a known failure every run after that, silently.',
+    say: 'The gate can ship a known failure silently on every later run.',
   },
   {
     id: 'known-issues',
     name: 'a known issues file',
-    say: 'A supported place to record a failure and ship past it.',
+    say: 'This option records a failure and lets it ship.',
   },
   {
     id: 'warn',
     name: 'a warn instead of fail toggle',
-    say: 'The same exit under a different name. If a check is wrong, fix the check in the open.',
+    say: 'The check produces the same exit under a different name. If a check is wrong, fix the check in the open.',
   },
 ] as const;
 
@@ -443,12 +443,12 @@ export const LIMITS = [
   {
     id: 'hand',
     head: 'The spec is written by hand',
-    say: 'Nothing here infers checks from prose. The gate is only as good as the sentences you chose to encode, and a plan with three binding sentences behind a one check spec is two thirds ungated.',
+    say: 'Nothing infers checks from prose. The gate is only as good as the sentences you encode. A plan with three binding sentences and a one check spec leaves two thirds ungated.',
   },
   {
     id: 'intent',
     head: 'It gates output, not intent',
-    say: 'An agent can satisfy every check and still build the wrong thing. This narrows the gap between approved and shipped. It does not close it.',
+    say: 'An agent can satisfy every check and still build the wrong thing. This narrows the gap between approved and shipped. It does not close the gap.',
   },
   {
     id: 'ffmpeg',
@@ -458,11 +458,11 @@ export const LIMITS = [
   {
     id: 'playwright',
     head: 'The browser gate needs Playwright',
-    say: 'And it takes real seconds per page.',
+    say: 'The browser gate takes real seconds per page.',
   },
   {
     id: 'shell',
-    head: 'The deploy gate is macOS and Linux shell',
+    head: 'The deploy gate runs in macOS and Linux shell.',
     say: 'It detects agent sessions specifically. The socket directory is configurable, and other agent runners need a small patch.',
   },
 ] as const;
@@ -494,7 +494,7 @@ export const CENSUS = {
   artefacts: 445348,
   failing: 43199,
   yamlShare: '88.4%',
-  say: 'A census published the same week as this package measured 445,348 published Claude Code artefacts and found 43,199 of them fail a structural check. 88.4% of those are a YAML block that does not parse. Nothing in the publishing path checks it.',
+  say: 'A census published the same week as this package measured 445,348 published Claude Code artefacts and found that 43,199 failed a structural check. A YAML block that does not parse accounts for 88.4% of those failures. Nothing in the publishing path checks it.',
   links: [
     { label: 'The census', href: 'https://toolproof.thecompound.tech/census' },
     { label: 'DOI 10.5281/zenodo.21936490', href: 'https://doi.org/10.5281/zenodo.21936490' },
@@ -511,7 +511,7 @@ export const CENSUS = {
 export const SOURCES = [
   {
     id: 'version',
-    claim: 'The published version is 0.1.1 and the licence is MIT.',
+    claim: 'The published version is 0.1.1, and the licence is MIT.',
     quote: '"dist-tags":{"latest":"0.1.1"}',
     cite: 'npm registry, GET /deferless',
     url: 'https://registry.npmjs.org/deferless',
@@ -519,7 +519,7 @@ export const SOURCES = [
   },
   {
     id: 'deps',
-    claim: 'The package has zero runtime dependencies and needs Node 18 or newer.',
+    claim: 'The package has zero runtime dependencies, and it needs Node 18 or newer.',
     quote: 'Node 18+. Zero runtime dependencies.',
     cite: 'README, Install',
     url: 'https://github.com/kyisaiah47/deferless#install',
@@ -527,7 +527,7 @@ export const SOURCES = [
   },
   {
     id: 'refusals',
-    claim: 'There is no force flag, no allowlist and no known issues file.',
+    claim: 'deferless has no force flag, no allowlist, and no known issues file.',
     quote: 'There is no --force, no allowlist and no known-issues file.',
     cite: 'README, opening',
     url: 'https://github.com/kyisaiah47/deferless',
@@ -535,7 +535,7 @@ export const SOURCES = [
   },
   {
     id: 'kinds',
-    claim: 'Fourteen check kinds ship, six reading the filesystem and eight decoding video pixels.',
+    claim: 'deferless ships fourteen check kinds. Six read the filesystem, and eight decode video pixels.',
     quote:
       'Fourteen check kinds ship. Six are answerable from the filesystem (files, requires, forbids, pairedFile, sidecar, media). Eight decode real pixels out of video with ffmpeg',
     cite: 'README, The four gates',
@@ -544,7 +544,7 @@ export const SOURCES = [
   },
   {
     id: 'exit2',
-    claim: 'Exit code 2 means the gate could not run, and it never collapses into 0.',
+    claim: 'Exit code 2 means that the gate could not run, and the gate never collapses that result into 0.',
     quote:
       'I could not check and I checked and it was fine are different answers, and a pipeline that renders them both as green has taught itself to ignore the gate.',
     cite: 'README, Exit codes',
@@ -553,18 +553,18 @@ export const SOURCES = [
   },
   {
     id: 'zsh',
-    claim: 'The deploy gate suite is forty six tests run under both bash and zsh.',
+    claim: 'The deploy gate suite has forty six tests, and the suite runs under both bash and zsh.',
     quote: '46 regression tests, run under both bash and zsh',
-    cite: 'README, The multi-agent deploy gate',
+    cite: 'README: The multi-agent deploy gate',
     url: 'https://github.com/kyisaiah47/deferless',
     read_at: '2026-09-21',
   },
   {
     id: 'census',
-    claim: 'A census of 445,348 published artefacts found 43,199 failing a structural check.',
+    claim: 'A census of 445,348 published artefacts found 43,199 artefacts that failed a structural check.',
     quote:
       'a census published the same week as this repo measured 445,348 published Claude Code artefacts and found 43,199 of them fail a structural check',
-    cite: 'README, The defect class these were built for, counted',
+    cite: 'README: The defect class these were built for, counted',
     url: 'https://doi.org/10.5281/zenodo.21936490',
     read_at: '2026-09-21',
   },
@@ -574,7 +574,7 @@ export const SOURCES = [
       'The browser gate exists because a landing page shipped with an h1 held at opacity 0.001.',
     quote:
       'the h1 held its animation start frame at opacity: 0.001, permanently. The element was in the DOM, at the right size, the right colour, the right position. There is no string to grep for that.',
-    cite: 'README, The gate that opens the page',
+    cite: 'README: The gate that opens the page',
     url: 'https://github.com/kyisaiah47/deferless',
     read_at: '2026-09-21',
   },

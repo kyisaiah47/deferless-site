@@ -87,8 +87,7 @@ export default function Welcome() {
       <div className="sv-welcome-intro">
         <h2 id="sv-welcome-title">Does the agent&apos;s work match the plan you approved?</h2>
         <p>
-          deferless checks the finished output against the sentences of your plan. A broken
-          sentence stops the work from shipping, and the failure quotes that sentence back to you.
+          deferless checks the finished output against the sentences in your plan. A failed check stops the work from shipping and quotes the failed sentence back to you.
         </p>
       </div>
 
@@ -98,7 +97,7 @@ export default function Welcome() {
             <span>ILLUSTRATION</span>
             <span>FROM THE PACKAGE&apos;S OWN DEMO</span>
           </div>
-          <p className="sv-illustration-plan">The plan says: &ldquo;{first.says}&rdquo;</p>
+          <p className="sv-illustration-plan">The plan states: &ldquo;{first.says}&rdquo;</p>
           <p className="sv-illustration-found">
             <code>{first.found}</code>
             <span>Stopped. The check exits {FAILING_EXIT}.</span>
@@ -115,12 +114,12 @@ export default function Welcome() {
           <button type="button" onClick={() => select('console')}>
             <b>Console</b>
             <strong>See more at once.</strong>
-            <span>Every gate, clause and exit code on one dense screen.</span>
+            <span>This screen shows every gate, clause, and exit code.</span>
           </button>
           <button type="button" onClick={() => select('simple')}>
             <b>Simple</b>
             <strong>Start with the essentials.</strong>
-            <span>A roomier overview with details you can open as you go.</span>
+            <span>This overview shows details you can open as you go.</span>
           </button>
         </div>
       </section>
@@ -139,7 +138,7 @@ export default function Welcome() {
               } catch {}
             }}
           />
-          Don&apos;t open this when I come back
+          Open this when I come back
         </label>
       </footer>
     </dialog>
