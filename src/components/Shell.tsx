@@ -50,7 +50,7 @@ export function Masthead({ here }: { here: string }) {
         <span className="mast-standing">{PRODUCT.standing}</span>
         <nav className="mast-nav" aria-label="Sections">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} aria-current={here === n.href ? 'page' : undefined}>
+            <Link key={n.href} href={n.href} prefetch={false} aria-current={here === n.href ? 'page' : undefined}>
               <Icon name={n.glyph} />
               {n.label}
             </Link>
@@ -87,17 +87,17 @@ export function Footer({ readAt }: { readAt: string }) {
           <div>
             <h4>The gates</h4>
             <ul>
-              <li><Link href="/kinds">Every clause, in one grid</Link></li>
-              <li><Link href="/method#exits">What each exit code means</Link></li>
+              <li><Link href="/kinds" prefetch={false}>Every clause, in one grid</Link></li>
+              <li><Link href="/method#exits" prefetch={false}>What each exit code means</Link></li>
               <li><a href={`${PRODUCT.repo}/blob/main/docs/SPEC.md`} rel="noopener">The spec format</a></li>
             </ul>
           </div>
           <div>
             <h4>Method</h4>
             <ul>
-              <li><Link href="/method#spec">How a plan becomes a refusal</Link></li>
-              <li><Link href="/method#limits">What this does not do</Link></li>
-              <li><Link href="/method#sources">Where every claim came from</Link></li>
+              <li><Link href="/method#spec" prefetch={false}>How a plan becomes a refusal</Link></li>
+              <li><Link href="/method#limits" prefetch={false}>What this does not do</Link></li>
+              <li><Link href="/method#sources" prefetch={false}>Where every claim came from</Link></li>
             </ul>
           </div>
           <div>
