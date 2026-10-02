@@ -4,6 +4,7 @@ import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import SiteViewProvider from '@/components/site-view/SiteViewProvider';
 import { PRODUCT } from '@/lib/product';
+import Analytics from '@/components/Analytics';
 
 /* A mono for everything a machine wrote. The sentence face is BDO Grotesk, declared as a
  * @font-face in globals.css off public/fonts, so the page's own words never wait on a CDN. */
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={mono.variable}>
       <body>
+        <Analytics />
         {/* LAYER 1 OF THE COMPOUND LABS CREDIT. The publisher is the apex Organization node,
             referenced by @id. Never a local Organization declaration: a second node under the
             same name is a second entity as far as a crawler is concerned, and the @id edge is
