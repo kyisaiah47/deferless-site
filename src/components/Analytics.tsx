@@ -195,6 +195,7 @@ function Tracker() {
   useEffect(() => {
     if (!pathname) return;
     let cancelled = false;
+    const timer = window.setTimeout(() => {
     /* The pageview AWAITS the SDK rather than testing a flag. With a static import
      * `initialized` was already true by the time this ran. With a fetch it is not, and an
      * early return here would silently drop the first pageview of every visit. */
@@ -251,7 +252,8 @@ function Tracker() {
           });
         }
     });
-    return () => { cancelled = true; };
+    }, 1000);
+    return () => { cancelled = true; window.clearTimeout(timer); };
   }, [pathname, searchParams]);
 
   return null;
