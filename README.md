@@ -27,7 +27,7 @@ domain and its exact route. That command determines whether the host serves.
 
 The accent is `#33C9C4`. Its OKLCH values are L 0.760, C 0.120 and h 191.6. The derivation uses
 arithmetic rather than taste. The estate read every chromatic product accent on 2026-09-21 from
-`~/.codex/skills/3d-image-gen/product-palette.json`. StoreReady uses its repo's citron.
+`~/CompoundLabs/compound-ops/brand/product-palette.json`. StoreReady uses its repo's citron.
 ShelfCite and EntryLine use values from their own `globals.css` files because they post-date the
 registry. The set contains 48 chromatic accents. The widest empty arc on the ring spans 27.4
 degrees between StillShipping h 177.9 and BlockDex h 205.3. h 191.6 is that arc's midpoint. The

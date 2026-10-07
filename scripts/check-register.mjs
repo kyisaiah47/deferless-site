@@ -88,7 +88,7 @@ const src = (f) => read(path.join(ROOT, f));
  * ⛔ THREE PRODUCTS POST-DATE THE REGISTRY and are read off their own repos, because a ring that
  * cannot see the newest accents would hand back a slot one of them already holds. */
 {
-  const reg = path.join(os.homedir(), '.codex/skills/3d-image-gen/product-palette.json');
+  const reg = path.join(os.homedir(), 'CompoundLabs/compound-ops/brand/product-palette.json');
   if (!fs.existsSync(reg)) { fail('ring', 'the estate palette registry is not on this machine'); }
   else {
     const oklch = (hx) => {
