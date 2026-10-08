@@ -159,6 +159,7 @@
 .sv-tools button { min-height: 44px; padding: 0; border: 0; background: none; color: var(--ink-2); font: inherit; cursor: pointer; }
 .sv-tools button:hover { color: var(--ink); }
 .sv-tools button[aria-pressed='true'] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+.sv-tools button:disabled { color: var(--ink-3); opacity: 0.55; cursor: not-allowed; }
 .sv-tools-strip { border-top: 1px solid var(--line); background: var(--panel); }
 .sv-tools-strip .in { padding-top: 4px; padding-bottom: 4px; }
 

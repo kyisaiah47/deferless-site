@@ -2,7 +2,9 @@
 
 import { useSiteView } from './SiteViewProvider';
 
-/* Both views and Start here, at the foot of every route in both views. */
+/* Both views and Start here, at the foot of every route in both views. On a route with no
+ * Simple composition the Simple button is disabled rather than dead, and aria-pressed follows
+ * the view actually on screen. */
 export default function ViewControls() {
   const mode = useSiteView();
   if (!mode) return null;
@@ -11,7 +13,15 @@ export default function ViewControls() {
       <div role="group" aria-label="Page view">
         <span>Your view</span>
         <button type="button" onClick={() => mode.choose('console')} aria-pressed={mode.view === 'console'}>Console</button>
-        <button type="button" onClick={() => mode.choose('simple')} aria-pressed={mode.view === 'simple'}>Simple</button>
+        <button
+          type="button"
+          onClick={() => mode.choose('simple')}
+          aria-pressed={mode.view === 'simple'}
+          disabled={!mode.hasSimple}
+          title={mode.hasSimple ? undefined : 'This page has a console view only'}
+        >
+          Simple
+        </button>
       </div>
       <button type="button" onClick={mode.welcome}>Start here <span aria-hidden="true">{'↗'}</span></button>
     </div>
